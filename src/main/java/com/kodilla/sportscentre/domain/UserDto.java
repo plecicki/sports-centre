@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class UserDto {
-    private Long userId;
     private String name;
     private String surname;
     private LocalDate birthDate;
