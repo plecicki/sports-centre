@@ -27,12 +27,13 @@ public class CardService {
         return cardMapper.mapToCardDto(card);
     }
 
-    public CardDto saveCard(final Card card) {
+    public CardDto saveCard(final CardDto cardDto) {
+        Card card = cardMapper.mapToCard(cardDto);
         return cardMapper.mapToCardDto(cardRepository.save(card));
     }
 
     public void deleteCard(final Long cardId) throws CardNotFoundException {
-        cardRepository.findById(cardId).orElseThrow(CardNotFoundException::new);
+        if(!cardRepository.existsById(cardId)) throw new CardNotFoundException();
         cardRepository.deleteById(cardId);
     }
 }

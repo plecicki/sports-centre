@@ -1,5 +1,6 @@
 package com.kodilla.sportscentre.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kodilla.sportscentre.domain.Enums.CardStatus;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,5 +29,6 @@ public class Card {
     private String accessPass;
 
     @Column(name = "CARD_STATUS")
+    @JsonBackReference
     private CardStatus cardStatus;
 }

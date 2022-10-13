@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-public class UserDto {
+public class UserEditDto {
+    private Long userId;
     private String name;
     private String surname;
     private LocalDate birthDate;

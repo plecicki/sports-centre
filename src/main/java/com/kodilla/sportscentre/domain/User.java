@@ -1,5 +1,6 @@
 package com.kodilla.sportscentre.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kodilla.sportscentre.domain.Enums.Goals;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -50,5 +51,6 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "CARD_ID")
+    @JsonBackReference
     private Card card;
 }
