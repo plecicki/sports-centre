@@ -1,6 +1,6 @@
 package com.kodilla.sportscentre.domain;
 
-import com.kodilla.sportscentre.domain.Enums.Goals;
+import com.kodilla.sportscentre.domain.enums.Goals;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

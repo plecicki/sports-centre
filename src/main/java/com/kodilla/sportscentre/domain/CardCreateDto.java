@@ -1,6 +1,6 @@
 package com.kodilla.sportscentre.domain;
 
-import com.kodilla.sportscentre.domain.Enums.CardStatus;
+import com.kodilla.sportscentre.domain.enums.CardStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

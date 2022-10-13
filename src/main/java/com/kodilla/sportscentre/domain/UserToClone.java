@@ -1,14 +1,18 @@
 package com.kodilla.sportscentre.domain;
 
 import com.kodilla.sportscentre.domain.enums.Goals;
+import com.kodilla.sportscentre.domain.prototype.Prototype;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Getter
+@Data
 @AllArgsConstructor
-public class UserEditDto {
+@NoArgsConstructor
+public class UserToClone extends Prototype<UserToClone> {
+
     private Long userId;
     private String name;
     private String surname;
@@ -20,4 +24,8 @@ public class UserEditDto {
     private boolean gym;
     private boolean swimmingPool;
     private Card card;
+
+    public UserToClone copy() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

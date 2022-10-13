@@ -1,7 +1,7 @@
 package com.kodilla.sportscentre.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.kodilla.sportscentre.domain.Enums.CardStatus;
+import com.kodilla.sportscentre.domain.enums.CardStatus;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
