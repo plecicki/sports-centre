@@ -6,7 +6,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CardCreateDto {
+public class CardEditDto {
+    private Long cardId;
     private User user;
     private String accessPass;
     private CardStatus cardStatus;

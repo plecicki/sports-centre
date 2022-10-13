@@ -1,7 +1,8 @@
 package com.kodilla.sportscentre.mappers;
 
 import com.kodilla.sportscentre.domain.Card;
-import com.kodilla.sportscentre.domain.CardDto;
+import com.kodilla.sportscentre.domain.CardCreateDto;
+import com.kodilla.sportscentre.domain.CardEditDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,26 +11,50 @@ import java.util.stream.Collectors;
 @Service
 public class CardMapper {
 
-    public Card mapToCard(final CardDto cardDto) {
+    public Card mapToCardFromCreate(final CardCreateDto cardCreateDto) {
         return new Card(
                 0L,
-                cardDto.getUser(),
-                cardDto.getAccessPass(),
-                cardDto.getCardStatus()
+                cardCreateDto.getUser(),
+                cardCreateDto.getAccessPass(),
+                cardCreateDto.getCardStatus()
         );
     }
 
-    public CardDto mapToCardDto(final Card card) {
-        return new CardDto(
+    public Card mapToCardFromEdit(final CardEditDto cardEditDto) {
+        return new Card(
+                cardEditDto.getCardId(),
+                cardEditDto.getUser(),
+                cardEditDto.getAccessPass(),
+                cardEditDto.getCardStatus()
+        );
+    }
+
+    public CardCreateDto mapToCardCreateDto(final Card card) {
+        return new CardCreateDto(
                 card.getUser(),
                 card.getAccessPass(),
                 card.getCardStatus()
         );
     }
 
-    public List<CardDto> mapToCardDtoList(final List<Card> cardList) {
+    public CardEditDto mapToCardEditDto(final Card card) {
+        return new CardEditDto(
+                card.getCardId(),
+                card.getUser(),
+                card.getAccessPass(),
+                card.getCardStatus()
+        );
+    }
+
+    public List<CardCreateDto> mapToCardCreateDtoList(final List<Card> cardList) {
         return cardList.stream()
-                .map(this::mapToCardDto)
+                .map(this::mapToCardCreateDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<CardEditDto> mapToCardEditDtoList(final List<Card> cardList) {
+        return cardList.stream()
+                .map(this::mapToCardEditDto)
                 .collect(Collectors.toList());
     }
 }

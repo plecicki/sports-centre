@@ -23,12 +23,12 @@ public class Card {
 
     @OneToOne
     @JoinColumn(name = "USER_ID")
+    @JsonBackReference
     private User user;
 
     @Column(name = "ACCESS_PASS")
     private String accessPass;
 
     @Column(name = "CARD_STATUS")
-    @JsonBackReference
     private CardStatus cardStatus;
 }
