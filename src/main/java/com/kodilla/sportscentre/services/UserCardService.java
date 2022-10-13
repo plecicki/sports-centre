@@ -21,21 +21,11 @@ public class UserCardService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserOldNew showEditionUser(final UserEditDto userEditDto) throws UserNotFoundException {
+    public UserOldNew editUser(final UserEditDto userEditDto) throws UserNotFoundException {
         User user = userRepository.findById(userEditDto.getUserId()).orElseThrow(UserNotFoundException::new);
-        UserToClone userToClone = new UserToClone(
-                user.getUserId(),
-                user.getName(),
-                user.getSurname(),
-                user.getBirthDate(),
-                user.getEmail(),
-                user.getPhone(),
-                user.getGoal(),
-                user.isStudent(),
-                user.isGym(),
-                user.isSwimmingPool(),
-                user.getCard()
-        );
+
+        UserToClone userToClone = userMapper.mapFromUserToUTClone(user);
+
         UserToClone clonedOldUser = new UserToClone();
         try {
             clonedOldUser = userToClone.copy();
@@ -43,19 +33,7 @@ public class UserCardService {
             System.out.println(exception);
         }
 
-        User oldUser = new User(
-                clonedOldUser.getUserId(),
-                clonedOldUser.getName(),
-                clonedOldUser.getSurname(),
-                clonedOldUser.getBirthDate(),
-                clonedOldUser.getEmail(),
-                clonedOldUser.getPhone(),
-                clonedOldUser.getGoal(),
-                clonedOldUser.isStudent(),
-                clonedOldUser.isGym(),
-                clonedOldUser.isSwimmingPool(),
-                clonedOldUser.getCard()
-        );
+        User oldUser = userMapper.mapFromUTCloneToUser(clonedOldUser);
         User newUser = userRepository.save(userMapper.mapToUserFromEdit(userEditDto));
         UserOldNew userOldNew = new UserOldNew(oldUser, newUser);
         return userOldNew;

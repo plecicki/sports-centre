@@ -3,6 +3,7 @@ package com.kodilla.sportscentre.mappers;
 import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.domain.UserCreateDto;
 import com.kodilla.sportscentre.domain.UserEditDto;
+import com.kodilla.sportscentre.domain.UserToClone;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -84,5 +85,37 @@ public class UserMapper {
         return userList.stream()
                 .map(this::mapToUserEditDto)
                 .collect(Collectors.toList());
+    }
+
+    public User mapFromUTCloneToUser(final UserToClone userToClone) {
+        return new User(
+                userToClone.getUserId(),
+                userToClone.getName(),
+                userToClone.getSurname(),
+                userToClone.getBirthDate(),
+                userToClone.getEmail(),
+                userToClone.getPhone(),
+                userToClone.getGoal(),
+                userToClone.isStudent(),
+                userToClone.isGym(),
+                userToClone.isSwimmingPool(),
+                userToClone.getCard()
+        );
+    }
+
+    public UserToClone mapFromUserToUTClone(final User user) {
+        return new UserToClone.UserToCloneBuilder()
+                .userId(user.getUserId())
+                .name(user.getName())
+                .surname(user.getSurname())
+                .birthDate(user.getBirthDate())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .goal(user.getGoal())
+                .student(user.isStudent())
+                .gym(user.isGym())
+                .swimmingPool(user.isSwimmingPool())
+                .card(user.getCard())
+                .build();
     }
 }
