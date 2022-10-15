@@ -16,6 +16,6 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(CardNotFoundException.class)
     public ResponseEntity<Object> handleCardNotFoundException(CardNotFoundException exception) {
-        return new ResponseEntity<>("Card with given id doesn't exist", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Card with given id doesn't exist or is owned by someone else", HttpStatus.BAD_REQUEST);
     }
 }

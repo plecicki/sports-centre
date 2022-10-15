@@ -22,7 +22,7 @@ public class Card {
     private Long cardId;
 
     @OneToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_ID", unique = true)
     @JsonBackReference
     private User user;
 

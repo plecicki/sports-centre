@@ -50,7 +50,8 @@ public class User {
     private boolean swimmingPool;
 
     @OneToOne
-    @JoinColumn(name = "CARD_ID")
+    @JoinColumn(name = "CARD_ID", unique = true)
     @JsonManagedReference
+    @NotNull
     private Card card;
 }
