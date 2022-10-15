@@ -10,8 +10,6 @@ import com.kodilla.sportscentre.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class UserCardService {
@@ -51,15 +49,21 @@ public class UserCardService {
 
     public User createUser(final UserCreateDto userCreateDto) throws CardNotFoundException {
         User user = userMapper.mapToUserFromCreate(userCreateDto);
-        System.out.println(1);
         Card card = cardRepository.findByCardId(user.getCard().getCardId()).orElseThrow(CardNotFoundException::new);
-        User savedUser = new User();
+        User savedUser;
         if (card.getUser() == null) {
             savedUser = userRepository.save(user);
-            card.setUser(user);
-            cardRepository.save(card);
+            CardToClone cardToClone = cardMapper.mapFromCardToCTClone(card);
+            CardToClone clonedCardToClone = new CardToClone();
+            try {
+                clonedCardToClone = cardToClone.copy();
+            } catch (CloneNotSupportedException exception) {
+                System.out.println(exception);
+            }
+            Card clonedCard = cardMapper.mapFromCTCloneToCard(clonedCardToClone);
+            clonedCard.setUser(savedUser);
+            cardRepository.save(clonedCard);
         } else {
-            System.out.println(2);
             throw new CardNotFoundException();
         }
         return savedUser;

@@ -1,8 +1,6 @@
 package com.kodilla.sportscentre.mappers;
 
-import com.kodilla.sportscentre.domain.Card;
-import com.kodilla.sportscentre.domain.CardCreateDto;
-import com.kodilla.sportscentre.domain.CardEditDto;
+import com.kodilla.sportscentre.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,5 +54,23 @@ public class CardMapper {
         return cardList.stream()
                 .map(this::mapToCardEditDto)
                 .collect(Collectors.toList());
+    }
+
+    public Card mapFromCTCloneToCard(final CardToClone cardToClone) {
+        return new Card(
+                cardToClone.getCardId(),
+                cardToClone.getUser(),
+                cardToClone.getAccessPass(),
+                cardToClone.getCardStatus()
+        );
+    }
+
+    public CardToClone mapFromCardToCTClone(final Card card) {
+        return new CardToClone.CardToCloneBuilder()
+                .cardId(card.getCardId())
+                .user(card.getUser())
+                .accessPass(card.getAccessPass())
+                .cardStatus(card.getCardStatus())
+                .build();
     }
 }
