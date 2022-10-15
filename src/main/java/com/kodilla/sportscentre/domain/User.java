@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -41,17 +42,23 @@ public class User {
     private Goals goal;
 
     @Column(name = "STUDENT")
-    private boolean student;
+    private Boolean student;
 
     @Column(name = "GYM")
-    private boolean gym;
+    private Boolean gym;
 
     @Column(name = "SWIMMING_POOL")
-    private boolean swimmingPool;
+    private Boolean swimmingPool;
 
     @OneToOne
     @JoinColumn(name = "CARD_ID", unique = true)
     @JsonManagedReference
     @NotNull
     private Card card;
+
+    @Column(name = "AUTO_EXTENSION")
+    private Boolean autoExtension;
+
+    @OneToMany
+    private List<Invoice> invoices;
 }

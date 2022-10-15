@@ -1,0 +1,16 @@
+package com.kodilla.sportscentre.domain;
+
+import com.kodilla.sportscentre.domain.enums.PaymentStatus;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+import java.time.LocalDate;
+
+@Getter
+@AllArgsConstructor
+public class InvoiceCreateDto {
+    private PaymentStatus paymentStatus;
+    private LocalDate paymentDeadline;
+    private Double sum;
+    private User user;
+}

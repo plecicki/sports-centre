@@ -55,22 +55,4 @@ public class CardMapper {
                 .map(this::mapToCardEditDto)
                 .collect(Collectors.toList());
     }
-
-    public Card mapFromCTCloneToCard(final CardToClone cardToClone) {
-        return new Card(
-                cardToClone.getCardId(),
-                cardToClone.getUser(),
-                cardToClone.getAccessPass(),
-                cardToClone.getCardStatus()
-        );
-    }
-
-    public CardToClone mapFromCardToCTClone(final Card card) {
-        return new CardToClone.CardToCloneBuilder()
-                .cardId(card.getCardId())
-                .user(card.getUser())
-                .accessPass(card.getAccessPass())
-                .cardStatus(card.getCardStatus())
-                .build();
-    }
 }

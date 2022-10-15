@@ -6,6 +6,7 @@ import com.kodilla.sportscentre.domain.UserEditDto;
 import com.kodilla.sportscentre.domain.UserToClone;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,10 +22,12 @@ public class UserMapper {
                 userCreateDto.getEmail(),
                 userCreateDto.getPhone(),
                 userCreateDto.getGoal(),
-                userCreateDto.isStudent(),
-                userCreateDto.isGym(),
-                userCreateDto.isSwimmingPool(),
-                userCreateDto.getCard()
+                userCreateDto.getStudent(),
+                userCreateDto.getGym(),
+                userCreateDto.getSwimmingPool(),
+                userCreateDto.getCard(),
+                userCreateDto.getAutoExtension(),
+                new ArrayList<>()
         );
     }
 
@@ -37,10 +40,12 @@ public class UserMapper {
                 userEditDto.getEmail(),
                 userEditDto.getPhone(),
                 userEditDto.getGoal(),
-                userEditDto.isStudent(),
-                userEditDto.isGym(),
-                userEditDto.isSwimmingPool(),
-                userEditDto.getCard()
+                userEditDto.getStudent(),
+                userEditDto.getGym(),
+                userEditDto.getSwimmingPool(),
+                userEditDto.getCard(),
+                userEditDto.getAutoExtension(),
+                new ArrayList<>()
         );
     }
 
@@ -52,10 +57,11 @@ public class UserMapper {
                 user.getEmail(),
                 user.getPhone(),
                 user.getGoal(),
-                user.isStudent(),
-                user.isGym(),
-                user.isSwimmingPool(),
-                user.getCard()
+                user.getStudent(),
+                user.getGym(),
+                user.getSwimmingPool(),
+                user.getCard(),
+                user.getAutoExtension()
         );
     }
 
@@ -68,10 +74,11 @@ public class UserMapper {
                 user.getEmail(),
                 user.getPhone(),
                 user.getGoal(),
-                user.isStudent(),
-                user.isGym(),
-                user.isSwimmingPool(),
-                user.getCard()
+                user.getStudent(),
+                user.getGym(),
+                user.getSwimmingPool(),
+                user.getCard(),
+                user.getAutoExtension()
         );
     }
 
@@ -96,10 +103,12 @@ public class UserMapper {
                 userToClone.getEmail(),
                 userToClone.getPhone(),
                 userToClone.getGoal(),
-                userToClone.isStudent(),
-                userToClone.isGym(),
-                userToClone.isSwimmingPool(),
-                userToClone.getCard()
+                userToClone.getStudent(),
+                userToClone.getGym(),
+                userToClone.getSwimmingPool(),
+                userToClone.getCard(),
+                userToClone.getAutoExtension(),
+                new ArrayList<>()
         );
     }
 
@@ -112,10 +121,11 @@ public class UserMapper {
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .goal(user.getGoal())
-                .student(user.isStudent())
-                .gym(user.isGym())
-                .swimmingPool(user.isSwimmingPool())
+                .student(user.getStudent())
+                .gym(user.getGym())
+                .swimmingPool(user.getSwimmingPool())
                 .card(user.getCard())
+                .autoExtension(user.getAutoExtension())
                 .build();
     }
 }

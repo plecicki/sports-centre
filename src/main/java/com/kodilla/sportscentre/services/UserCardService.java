@@ -53,16 +53,8 @@ public class UserCardService {
         User savedUser;
         if (card.getUser() == null) {
             savedUser = userRepository.save(user);
-            CardToClone cardToClone = cardMapper.mapFromCardToCTClone(card);
-            CardToClone clonedCardToClone = new CardToClone();
-            try {
-                clonedCardToClone = cardToClone.copy();
-            } catch (CloneNotSupportedException exception) {
-                System.out.println(exception);
-            }
-            Card clonedCard = cardMapper.mapFromCTCloneToCard(clonedCardToClone);
-            clonedCard.setUser(savedUser);
-            cardRepository.save(clonedCard);
+            card.setUser(savedUser);
+            cardRepository.save(card);
         } else {
             throw new CardNotFoundException();
         }

@@ -20,10 +20,11 @@ public class UserToClone extends Prototype<UserToClone> {
     private String email;
     private String phone;
     private Goals goal;
-    private boolean student;
-    private boolean gym;
-    private boolean swimmingPool;
+    private Boolean student;
+    private Boolean gym;
+    private Boolean swimmingPool;
     private Card card;
+    private Boolean autoExtension;
 
     public static class UserToCloneBuilder {
         private Long userId;
@@ -33,10 +34,11 @@ public class UserToClone extends Prototype<UserToClone> {
         private String email;
         private String phone;
         private Goals goal;
-        private boolean student;
-        private boolean gym;
-        private boolean swimmingPool;
+        private Boolean student;
+        private Boolean gym;
+        private Boolean swimmingPool;
         private Card card;
+        private Boolean autoExtension;
 
         public UserToCloneBuilder userId(Long userId) {
             this.userId = userId;
@@ -73,23 +75,28 @@ public class UserToClone extends Prototype<UserToClone> {
             return this;
         }
 
-        public UserToCloneBuilder student(boolean student) {
+        public UserToCloneBuilder student(Boolean student) {
             this.student = student;
             return this;
         }
 
-        public UserToCloneBuilder gym(boolean gym) {
+        public UserToCloneBuilder gym(Boolean gym) {
             this.gym = gym;
             return this;
         }
 
-        public UserToCloneBuilder swimmingPool(boolean swimmingPool) {
+        public UserToCloneBuilder swimmingPool(Boolean swimmingPool) {
             this.swimmingPool = swimmingPool;
             return this;
         }
 
         public UserToCloneBuilder card(Card card) {
             this.card = card;
+            return this;
+        }
+
+        public UserToCloneBuilder autoExtension(Boolean autoExtension) {
+            this.autoExtension = autoExtension;
             return this;
         }
 
@@ -105,7 +112,8 @@ public class UserToClone extends Prototype<UserToClone> {
                     student,
                     gym,
                     swimmingPool,
-                    card
+                    card,
+                    autoExtension
             );
         }
     }

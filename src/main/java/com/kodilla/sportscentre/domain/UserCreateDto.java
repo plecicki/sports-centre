@@ -15,8 +15,9 @@ public class UserCreateDto {
     private String email;
     private String phone;
     private Goals goal;
-    private boolean student;
-    private boolean gym;
-    private boolean swimmingPool;
+    private Boolean student;
+    private Boolean gym;
+    private Boolean swimmingPool;
     private Card card;
+    private Boolean autoExtension;
 }
