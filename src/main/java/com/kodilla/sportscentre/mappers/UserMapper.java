@@ -27,7 +27,8 @@ public class UserMapper {
                 userCreateDto.getSwimmingPool(),
                 userCreateDto.getCard(),
                 userCreateDto.getAutoExtension(),
-                new ArrayList<>()
+                new ArrayList<>(),
+                userCreateDto.getSubValidity()
         );
     }
 
@@ -45,7 +46,8 @@ public class UserMapper {
                 userEditDto.getSwimmingPool(),
                 userEditDto.getCard(),
                 userEditDto.getAutoExtension(),
-                new ArrayList<>()
+                new ArrayList<>(),
+                userEditDto.getSubValidity()
         );
     }
 
@@ -61,7 +63,8 @@ public class UserMapper {
                 user.getGym(),
                 user.getSwimmingPool(),
                 user.getCard(),
-                user.getAutoExtension()
+                user.getAutoExtension(),
+                user.getSubValidity()
         );
     }
 
@@ -78,7 +81,8 @@ public class UserMapper {
                 user.getGym(),
                 user.getSwimmingPool(),
                 user.getCard(),
-                user.getAutoExtension()
+                user.getAutoExtension(),
+                user.getSubValidity()
         );
     }
 
@@ -108,7 +112,8 @@ public class UserMapper {
                 userToClone.getSwimmingPool(),
                 userToClone.getCard(),
                 userToClone.getAutoExtension(),
-                new ArrayList<>()
+                new ArrayList<>(),
+                userToClone.getSubValidity()
         );
     }
 
@@ -126,6 +131,7 @@ public class UserMapper {
                 .swimmingPool(user.getSwimmingPool())
                 .card(user.getCard())
                 .autoExtension(user.getAutoExtension())
+                .subValidity(user.getSubValidity())
                 .build();
     }
 }

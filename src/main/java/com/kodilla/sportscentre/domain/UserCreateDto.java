@@ -20,4 +20,5 @@ public class UserCreateDto {
     private Boolean swimmingPool;
     private Card card;
     private Boolean autoExtension;
+    private LocalDate subValidity;
 }

@@ -57,8 +57,12 @@ public class User {
     private Card card;
 
     @Column(name = "AUTO_EXTENSION")
+    @NotNull
     private Boolean autoExtension;
 
     @OneToMany
     private List<Invoice> invoices;
+
+    @Column(name = "SUB_VALIDITY")
+    private LocalDate subValidity;
 }

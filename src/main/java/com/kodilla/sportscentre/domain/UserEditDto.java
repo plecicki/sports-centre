@@ -21,4 +21,5 @@ public class UserEditDto {
     private Boolean swimmingPool;
     private Card card;
     private Boolean autoExtension;
+    private LocalDate subValidity;
 }

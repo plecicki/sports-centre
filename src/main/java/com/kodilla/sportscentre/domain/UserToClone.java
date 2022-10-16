@@ -25,6 +25,7 @@ public class UserToClone extends Prototype<UserToClone> {
     private Boolean swimmingPool;
     private Card card;
     private Boolean autoExtension;
+    private LocalDate subValidity;
 
     public static class UserToCloneBuilder {
         private Long userId;
@@ -39,6 +40,7 @@ public class UserToClone extends Prototype<UserToClone> {
         private Boolean swimmingPool;
         private Card card;
         private Boolean autoExtension;
+        private LocalDate subValidity;
 
         public UserToCloneBuilder userId(Long userId) {
             this.userId = userId;
@@ -100,6 +102,11 @@ public class UserToClone extends Prototype<UserToClone> {
             return this;
         }
 
+        public UserToCloneBuilder subValidity(LocalDate subValidity) {
+            this.subValidity = subValidity;
+            return this;
+        }
+
         public UserToClone build() {
             return new UserToClone(
                     userId,
@@ -113,7 +120,8 @@ public class UserToClone extends Prototype<UserToClone> {
                     gym,
                     swimmingPool,
                     card,
-                    autoExtension
+                    autoExtension,
+                    subValidity
             );
         }
     }
