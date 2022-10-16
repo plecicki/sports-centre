@@ -4,6 +4,7 @@ import com.kodilla.sportscentre.domain.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
@@ -11,6 +12,6 @@ import java.time.LocalDate;
 public class InvoiceCreateDto {
     private PaymentStatus paymentStatus;
     private LocalDate paymentDeadline;
-    private Double sum;
+    private BigDecimal sum;
     private User user;
 }

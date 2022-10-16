@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -28,7 +29,7 @@ public class Invoice {
     private LocalDate paymentDeadline;
 
     @Column(name = "SUM")
-    private Double sum;
+    private BigDecimal sum;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
