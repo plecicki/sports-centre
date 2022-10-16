@@ -1,5 +1,7 @@
-package com.kodilla.sportscentre.weather;
+package com.kodilla.sportscentre.mappers;
 
+import com.kodilla.sportscentre.weather.TomWeatherDto;
+import com.kodilla.sportscentre.weather.WeatherDto;
 import org.springframework.stereotype.Service;
 
 @Service

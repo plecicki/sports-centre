@@ -3,7 +3,7 @@ package com.kodilla.sportscentre.services;
 import com.kodilla.sportscentre.weather.TomWeatherDto;
 import com.kodilla.sportscentre.weather.WeatherClient;
 import com.kodilla.sportscentre.weather.WeatherDto;
-import com.kodilla.sportscentre.weather.WeatherMapper;
+import com.kodilla.sportscentre.mappers.WeatherMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
