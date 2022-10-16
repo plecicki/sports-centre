@@ -1,12 +1,15 @@
 package com.kodilla.sportscentre.services;
 
 import com.kodilla.sportscentre.domain.Order;
+import com.kodilla.sportscentre.domain.OrderCreateDto;
+import com.kodilla.sportscentre.domain.OrderDecInDto;
 import com.kodilla.sportscentre.mappers.OrderMapper;
 import com.kodilla.sportscentre.repositories.OrderRepository;
-import com.kodilla.sportscentre.suplements.StartOrder;
-import com.kodilla.sportscentre.suplements.SupplementsOrder;
+import com.kodilla.sportscentre.suplements.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
@@ -15,9 +18,22 @@ public class SupplementsService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
 
-    public Order startOrder() {
+    public OrderCreateDto createOrder(OrderDecInDto orderDecInDto) {
+        SupplementsOrder supplementsOrder = new StartOrder();
+        if (orderDecInDto.getBcaa()) supplementsOrder = new BCAADecorator(supplementsOrder);
+        if (orderDecInDto.getCaffeine()) supplementsOrder = new CaffeineDecorator(supplementsOrder);
+        if (orderDecInDto.getCitrulline()) supplementsOrder = new CitrullineDecorator(supplementsOrder);
+        if (orderDecInDto.getCreatine()) supplementsOrder = new CreatineDecorator(supplementsOrder);
+        if (orderDecInDto.getProtein()) supplementsOrder = new ProteinDecorator(supplementsOrder);
+        String description = supplementsOrder.getDescription();
+        BigDecimal calculatedCost = supplementsOrder.getCost();
 
-        //TODO Continue work here
-        return null;
+        OrderCreateDto orderCreateDto = new OrderCreateDto(
+                description,
+                calculatedCost
+        );
+        Order order = orderMapper.mapToOrderFromCreate(orderCreateDto);
+        orderRepository.save(order);
+        return orderCreateDto;
     }
 }
