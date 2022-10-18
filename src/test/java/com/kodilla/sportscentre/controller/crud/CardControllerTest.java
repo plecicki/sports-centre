@@ -2,7 +2,7 @@ package com.kodilla.sportscentre.controller.crud;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kodilla.sportscentre.controller.deserializer.LocalDateDeserializer;
+import com.kodilla.sportscentre.controller.serializer.LocalDateSerializer;
 import com.kodilla.sportscentre.controllers.crud.CardController;
 import com.kodilla.sportscentre.domain.Card;
 import com.kodilla.sportscentre.domain.CardCreateDto;
@@ -10,7 +10,6 @@ import com.kodilla.sportscentre.domain.CardEditDto;
 import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.domain.enums.CardStatus;
 import com.kodilla.sportscentre.domain.enums.Goals;
-import com.kodilla.sportscentre.mappers.CardMapper;
 import com.kodilla.sportscentre.services.CardService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -63,11 +62,6 @@ public class CardControllerTest {
                 new Card(3L, null, "accessPass3", CardStatus.LOST)
         );
         user.setCard(cardList.get(1));
-        List<CardCreateDto> cardCreateDtos = Arrays.asList(
-                new CardCreateDto(null, "accessPass1", CardStatus.AVAILABLE),
-                new CardCreateDto(user, "accessPass2", CardStatus.AVAILABLE),
-                new CardCreateDto(null, "accessPass3", CardStatus.LOST)
-        );
 
         when(cardService.getAllCards()).thenReturn(cardList);
 
@@ -92,7 +86,6 @@ public class CardControllerTest {
     void shouldFetchCard() throws Exception {
         //Given
         Card card = new Card(1L, null, "accessPass1", CardStatus.AVAILABLE);
-        CardCreateDto cardCreateDto = new CardCreateDto(null, "accessPass1", CardStatus.AVAILABLE);
 
         when(cardService.getCardById(1L)).thenReturn(card);
 
@@ -114,10 +107,10 @@ public class CardControllerTest {
 
         when(cardService.createCard(cardCreateDto)).thenReturn(card);
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
-
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+                .create();
         String jsonContent = gson.toJson(cardCreateDto);
 
         //When & Then
@@ -137,10 +130,10 @@ public class CardControllerTest {
 
         when(cardService.editCard(cardEditDto)).thenReturn(card);
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
-
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+                .create();
         String jsonContent = gson.toJson(cardEditDto);
 
         //When & Then
