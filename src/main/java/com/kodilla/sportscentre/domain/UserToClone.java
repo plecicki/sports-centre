@@ -2,13 +2,12 @@ package com.kodilla.sportscentre.domain;
 
 import com.kodilla.sportscentre.domain.enums.Goals;
 import com.kodilla.sportscentre.domain.prototype.Prototype;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserToClone extends Prototype<UserToClone> {
