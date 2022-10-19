@@ -31,9 +31,7 @@ public class EmailScheduler {
         List<User> userList = userRepository.findAll();
         for (User user: userList) {
             if (user.getAutoExtension()) {
-                System.out.println(123456);
                 if (user.getSubValidity().equals(LocalDate.now())) {
-                    System.out.println(11111);
                     simpleEmailService.sendDaily(
                             new Mail(
                                     user.getEmail(),
@@ -53,10 +51,8 @@ public class EmailScheduler {
                     invoiceService.createInvoice(invoiceCreateDto);
                 }
             } else {
-                System.out.println(654321);
                 if (0 < ChronoUnit.DAYS.between(LocalDate.now(), user.getSubValidity()) &&
                         ChronoUnit.DAYS.between(LocalDate.now(), user.getSubValidity()) <= 7) {
-                    System.out.println(22222);
                     simpleEmailService.sendDaily(
                             new Mail(
                                     user.getEmail(),
@@ -70,7 +66,6 @@ public class EmailScheduler {
                             )
                     );
                 } else if (ChronoUnit.DAYS.between(LocalDate.now(), user.getSubValidity()) <= 0) {
-                    System.out.println(33333);
                     simpleEmailService.sendDaily(
                             new Mail(
                                     user.getEmail(),
