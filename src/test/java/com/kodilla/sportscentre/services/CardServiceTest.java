@@ -111,6 +111,9 @@ public class CardServiceTest {
         Assertions.assertNull(editedCard.getUser());
         Assertions.assertEquals("accessPass2", editedCard.getAccessPass());
         Assertions.assertEquals(CardStatus.LOST, editedCard.getCardStatus());
+
+        //CleanUp
+        cardRepository.delete(editedCard);
     }
 
     @Test
@@ -120,7 +123,11 @@ public class CardServiceTest {
         Card card = cardService.createCard(cardCreateDto);
 
         //When
-        cardRepository.delete(card);
+        try {
+            cardService.deleteCard(card.getCardId());
+        } catch (CardNotFoundException e) {
+            System.out.println(e);
+        }
 
         //Then
         boolean cardNotFound = false;
