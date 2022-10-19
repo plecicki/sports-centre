@@ -1,14 +1,11 @@
-package com.kodilla.sportscentre.controller.tofront;
+package com.kodilla.sportscentre.controllers.tofront;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kodilla.sportscentre.controller.serializer.LocalDateSerializer;
-import com.kodilla.sportscentre.controllers.tofront.UserCardContr;
+import com.kodilla.sportscentre.controllers.serializer.LocalDateSerializer;
 import com.kodilla.sportscentre.domain.*;
-import com.kodilla.sportscentre.domain.enums.CardStatus;
 import com.kodilla.sportscentre.domain.enums.Goals;
 import com.kodilla.sportscentre.services.UserCardService;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,8 +18,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.mockito.Mockito.when;
 

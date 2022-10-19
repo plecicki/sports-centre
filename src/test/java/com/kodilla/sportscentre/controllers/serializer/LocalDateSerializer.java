@@ -1,4 +1,4 @@
-package com.kodilla.sportscentre.controller.serializer;
+package com.kodilla.sportscentre.controllers.serializer;
 
 import com.google.gson.*;
 

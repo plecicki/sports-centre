@@ -1,9 +1,8 @@
-package com.kodilla.sportscentre.controller.crud;
+package com.kodilla.sportscentre.controllers.crud;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kodilla.sportscentre.controller.serializer.LocalDateSerializer;
-import com.kodilla.sportscentre.controllers.crud.UserController;
+import com.kodilla.sportscentre.controllers.serializer.LocalDateSerializer;
 import com.kodilla.sportscentre.domain.Card;
 import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.domain.UserCreateDto;

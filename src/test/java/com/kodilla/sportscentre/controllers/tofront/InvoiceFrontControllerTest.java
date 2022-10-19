@@ -1,9 +1,5 @@
-package com.kodilla.sportscentre.controller.tofront;
+package com.kodilla.sportscentre.controllers.tofront;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.kodilla.sportscentre.controller.serializer.LocalDateSerializer;
-import com.kodilla.sportscentre.controllers.tofront.InvoiceFrontController;
 import com.kodilla.sportscentre.domain.Invoice;
 import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.domain.enums.PaymentStatus;

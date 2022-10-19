@@ -1,9 +1,8 @@
-package com.kodilla.sportscentre.controller.tofront;
+package com.kodilla.sportscentre.controllers.tofront;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kodilla.sportscentre.controller.serializer.LocalDateSerializer;
-import com.kodilla.sportscentre.controllers.tofront.SupplementsController;
+import com.kodilla.sportscentre.controllers.serializer.LocalDateSerializer;
 import com.kodilla.sportscentre.domain.OrderCreateDto;
 import com.kodilla.sportscentre.domain.OrderDecInDto;
 import com.kodilla.sportscentre.services.SupplementsService;

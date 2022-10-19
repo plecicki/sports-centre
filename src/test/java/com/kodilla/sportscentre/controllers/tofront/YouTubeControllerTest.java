@@ -1,6 +1,5 @@
-package com.kodilla.sportscentre.controller.tofront;
+package com.kodilla.sportscentre.controllers.tofront;
 
-import com.kodilla.sportscentre.controllers.tofront.YouTubeController;
 import com.kodilla.sportscentre.services.YouTubeService;
 import com.kodilla.sportscentre.youtube.MyYouTubeDto;
 import org.hamcrest.Matchers;

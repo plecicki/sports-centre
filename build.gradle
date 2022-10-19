@@ -37,6 +37,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
 
     testImplementation 'com.google.code.gson:gson'
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.4.0'
 }
 
 tasks.named('test') {

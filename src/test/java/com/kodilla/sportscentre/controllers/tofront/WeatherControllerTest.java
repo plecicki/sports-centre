@@ -1,6 +1,5 @@
-package com.kodilla.sportscentre.controller.tofront;
+package com.kodilla.sportscentre.controllers.tofront;
 
-import com.kodilla.sportscentre.controllers.tofront.WeatherController;
 import com.kodilla.sportscentre.services.WeatherService;
 import com.kodilla.sportscentre.weather.TomWeatherDto;
 import org.hamcrest.Matchers;
