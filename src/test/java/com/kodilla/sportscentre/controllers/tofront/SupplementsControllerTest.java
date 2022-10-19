@@ -3,6 +3,7 @@ package com.kodilla.sportscentre.controllers.tofront;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kodilla.sportscentre.controllers.serializer.LocalDateSerializer;
+import com.kodilla.sportscentre.domain.Order;
 import com.kodilla.sportscentre.domain.OrderCreateDto;
 import com.kodilla.sportscentre.domain.OrderDecInDto;
 import com.kodilla.sportscentre.services.SupplementsService;
@@ -40,12 +41,13 @@ public class SupplementsControllerTest {
                 false,
                 true
         );
-        OrderCreateDto orderCreateDto = new OrderCreateDto(
+        Order order = new Order(
+                1L,
                 " BCAA Caffeine Citrulline Protein",
                 BigDecimal.valueOf(148.0)
         );
 
-        when(supplementsService.createOrder(orderDecInDto)).thenReturn(orderCreateDto);
+        when(supplementsService.createOrder(orderDecInDto)).thenReturn(order);
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()

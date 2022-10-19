@@ -224,10 +224,15 @@ public class InvoiceServiceTest {
         Assertions.assertEquals(PaymentStatus.NOTPAID, editedInvoice.getPaymentStatus());
         Assertions.assertEquals(LocalDate.of(2024, 12, 12), editedInvoice.getPaymentDeadline());
         Assertions.assertEquals(BigDecimal.valueOf(200.0), editedInvoice.getSum());
+
+        //CleanUp
+        invoiceRepository.delete(editedInvoice);
+        userRepository.delete(savedUser);
     }
 
     @Test
     void deleteInvoiceTest() {
+        //Given
         User user = new User(0L,
                 "name1", "surname1",
                 LocalDate.of(1990, 12, 12),
@@ -271,5 +276,8 @@ public class InvoiceServiceTest {
         }
         Assertions.assertNull(invoiceAfterDelete.getInvoiceId());
         Assertions.assertTrue(invoiceNotFound);
+
+        //CleanUp
+        userRepository.delete(savedUser);
     }
 }

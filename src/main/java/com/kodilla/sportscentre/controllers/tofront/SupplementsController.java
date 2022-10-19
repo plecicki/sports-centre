@@ -1,6 +1,6 @@
 package com.kodilla.sportscentre.controllers.tofront;
 
-import com.kodilla.sportscentre.domain.OrderCreateDto;
+import com.kodilla.sportscentre.domain.Order;
 import com.kodilla.sportscentre.domain.OrderDecInDto;
 import com.kodilla.sportscentre.services.SupplementsService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class SupplementsController {
     private final SupplementsService supplementsService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderCreateDto> createOrder(@RequestBody OrderDecInDto orderDecInDto) {
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDecInDto orderDecInDto) {
         return ResponseEntity.ok(supplementsService.createOrder(orderDecInDto));
     }
 }

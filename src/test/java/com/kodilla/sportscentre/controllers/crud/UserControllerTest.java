@@ -83,7 +83,7 @@ public class UserControllerTest {
                 new ArrayList<>(),
                 LocalDate.of(2022, 11, 18)
         );
-        Card card = new Card(1L, user2, "accessPass1", CardStatus.AVAILABLE);
+        Card card = new Card(1L, null, "accessPass1", CardStatus.AVAILABLE);
         user2.setCard(card);
         List<User> userList = Arrays.asList(user1, user2, user3);
 

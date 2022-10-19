@@ -18,7 +18,7 @@ public class SupplementsService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
 
-    public OrderCreateDto createOrder(OrderDecInDto orderDecInDto) {
+    public Order createOrder(OrderDecInDto orderDecInDto) {
         SupplementsOrder supplementsOrder = new StartOrder();
         if (orderDecInDto.getBcaa()) supplementsOrder = new BCAADecorator(supplementsOrder);
         if (orderDecInDto.getCaffeine()) supplementsOrder = new CaffeineDecorator(supplementsOrder);
@@ -33,7 +33,7 @@ public class SupplementsService {
                 calculatedCost
         );
         Order order = orderMapper.mapToOrderFromCreate(orderCreateDto);
-        orderRepository.save(order);
-        return orderCreateDto;
+        order = orderRepository.save(order);
+        return order;
     }
 }
