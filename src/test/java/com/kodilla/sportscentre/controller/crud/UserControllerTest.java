@@ -54,7 +54,7 @@ public class UserControllerTest {
                 null,
                 true,
                 new ArrayList<>(),
-                LocalDate.now().plusMonths(1)
+                LocalDate.of(2022, 11, 18)
         );
         User user2 = new User(2L,
                 "name2", "surname2",
@@ -68,7 +68,7 @@ public class UserControllerTest {
                 null,
                 true,
                 new ArrayList<>(),
-                LocalDate.now().plusMonths(1)
+                LocalDate.of(2022, 11, 18)
         );
         User user3 = new User(3L,
                 "name3", "surname3",
@@ -82,7 +82,7 @@ public class UserControllerTest {
                 null,
                 true,
                 new ArrayList<>(),
-                LocalDate.now().plusMonths(1)
+                LocalDate.of(2022, 11, 18)
         );
         Card card = new Card(1L, user2, "accessPass1", CardStatus.AVAILABLE);
         user2.setCard(card);
@@ -155,7 +155,7 @@ public class UserControllerTest {
                 null,
                 true,
                 new ArrayList<>(),
-                LocalDate.now().plusMonths(1)
+                LocalDate.of(2022, 11, 18)
         );
 
         when(userService.getUserById(1L)).thenReturn(user);
