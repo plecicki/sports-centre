@@ -3,6 +3,8 @@ package com.kodilla.sportscentre.controllers.tofront;
 import com.kodilla.sportscentre.domain.AccountCreateDto;
 import com.kodilla.sportscentre.domain.AccountInDto;
 import com.kodilla.sportscentre.domain.AccountOutDto;
+import com.kodilla.sportscentre.exceptions.LackOfPermissionToCreateAdminAccount;
+import com.kodilla.sportscentre.exceptions.ThisUsernameIsTaken;
 import com.kodilla.sportscentre.exceptions.WrongPasswordException;
 import com.kodilla.sportscentre.exceptions.WrongUsernameException;
 import com.kodilla.sportscentre.services.AccountService;
@@ -19,8 +21,9 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createAccount(@RequestBody AccountCreateDto accountCreateDto) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> createAccount(@RequestBody AccountCreateDto accountCreateDto)
+            throws LackOfPermissionToCreateAdminAccount, ThisUsernameIsTaken {
         accountService.createAccount(accountCreateDto);
         return ResponseEntity.ok().build();
     }

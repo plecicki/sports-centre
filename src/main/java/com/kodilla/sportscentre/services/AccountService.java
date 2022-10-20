@@ -1,7 +1,10 @@
 package com.kodilla.sportscentre.services;
 
+import com.kodilla.sportscentre.config.CreateAdminKey;
 import com.kodilla.sportscentre.domain.*;
 import com.kodilla.sportscentre.domain.enums.Role;
+import com.kodilla.sportscentre.exceptions.LackOfPermissionToCreateAdminAccount;
+import com.kodilla.sportscentre.exceptions.ThisUsernameIsTaken;
 import com.kodilla.sportscentre.exceptions.WrongPasswordException;
 import com.kodilla.sportscentre.exceptions.WrongUsernameException;
 import com.kodilla.sportscentre.repositories.AccountRepository;
@@ -16,12 +19,22 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
 
-    public void createAccount(AccountCreateDto accountCreateDto) {
+    private final CreateAdminKey createAdminKey;
+
+    public void createAccount(AccountCreateDto accountCreateDto)
+    throws LackOfPermissionToCreateAdminAccount, ThisUsernameIsTaken{
         String username = accountCreateDto.getUsername();
         String passwordSalt = RandomStringUtils.random(32);
         String passwordHash = DigestUtils.sha512Hex(accountCreateDto.getPassword()+passwordSalt);
         Role role = accountCreateDto.getRole();
         User user = accountCreateDto.getUser();
+        String adminKey = accountCreateDto.getCreateAdminKey();
+
+        if(role.equals(Role.ADMIN) && !adminKey.equals(createAdminKey.getCreateAdminKey()))
+            throw new LackOfPermissionToCreateAdminAccount();
+
+        if(accountRepository.existsAccountByUsername(username))
+            throw new ThisUsernameIsTaken();
 
         Account account = new Account(
                 0L,

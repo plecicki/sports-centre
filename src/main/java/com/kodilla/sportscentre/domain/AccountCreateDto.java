@@ -12,4 +12,6 @@ public class AccountCreateDto {
     private String password;
     private Role role;
     private User user;
+
+    private String createAdminKey;
 }

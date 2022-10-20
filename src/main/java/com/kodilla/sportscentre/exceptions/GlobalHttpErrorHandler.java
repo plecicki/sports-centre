@@ -38,4 +38,14 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleWrongPassword(WrongPasswordException exception) {
         return new ResponseEntity<>("Given password is incorrect", HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(LackOfPermissionToCreateAdminAccount.class)
+    public ResponseEntity<Object> handleWrongAdminCreateKey(LackOfPermissionToCreateAdminAccount exception) {
+        return new ResponseEntity<>("You do not have permission to create admin account", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ThisUsernameIsTaken.class)
+    public ResponseEntity<Object> handleWrongAdminCreateKey(ThisUsernameIsTaken exception) {
+        return new ResponseEntity<>("This username is already taken, please try another one", HttpStatus.BAD_REQUEST);
+    }
 }

@@ -23,9 +23,9 @@ public class YouTubeService {
 
     public List<MyYouTubeDto> getYouTubeVideos() {
         List<MyYouTubeDto> myYouTubeDtoList = new ArrayList<>();
-        for (int i=0; i < youTubeConfig.getVideosIdList().size(); i++) {
+        for (int i=0; i < youTubeConfig.getVideos().size(); i++) {
             YouTubeDto youTubeDto = youTubeClient.getYouTubeVideoInfo(i);
-            URI videoUri = youTubeClient.getYouTubeVideoUrlAddress(youTubeConfig.getVideosIdList().get(i));
+            URI videoUri = youTubeClient.getYouTubeVideoUrlAddress(youTubeConfig.getVideos().get(i));
             myYouTubeDtoList.add(youTubeMapper.mapYouTubeDtoToMyYouTubeDto(youTubeDto, videoUri));
         }
         return myYouTubeDtoList;
