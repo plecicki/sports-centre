@@ -30,7 +30,8 @@ public class SupplementsService {
 
         OrderCreateDto orderCreateDto = new OrderCreateDto(
                 description,
-                calculatedCost
+                calculatedCost,
+                orderDecInDto.getUser()
         );
         Order order = orderMapper.mapToOrderFromCreate(orderCreateDto);
         order = orderRepository.save(order);

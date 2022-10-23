@@ -15,7 +15,8 @@ public class OrderMapper {
         return new Order(
                 0L,
                 orderCreateDto.getDescription(),
-                orderCreateDto.getSum()
+                orderCreateDto.getSum(),
+                orderCreateDto.getUser()
         );
     }
 
@@ -23,14 +24,16 @@ public class OrderMapper {
         return new Order(
                 orderEditDto.getOrderId(),
                 orderEditDto.getDescription(),
-                orderEditDto.getSum()
+                orderEditDto.getSum(),
+                orderEditDto.getUser()
         );
     }
 
     public OrderCreateDto mapToOrderCreateDto(Order order) {
         return new OrderCreateDto(
                 order.getDescription(),
-                order.getSum()
+                order.getSum(),
+                order.getUser()
         );
     }
 
@@ -38,7 +41,8 @@ public class OrderMapper {
         return new OrderEditDto(
                 order.getOrderId(),
                 order.getDescription(),
-                order.getSum()
+                order.getSum(),
+                order.getUser()
         );
     }
 

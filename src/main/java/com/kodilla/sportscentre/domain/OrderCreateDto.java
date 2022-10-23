@@ -11,4 +11,5 @@ public class OrderCreateDto {
 
     private String description;
     private BigDecimal sum;
+    private User user;
 }

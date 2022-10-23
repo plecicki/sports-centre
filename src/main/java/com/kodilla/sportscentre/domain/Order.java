@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
@@ -28,4 +25,8 @@ public class Order {
 
     @Column(name = "SUM")
     private BigDecimal sum;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }
