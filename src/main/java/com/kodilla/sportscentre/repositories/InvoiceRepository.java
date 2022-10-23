@@ -11,4 +11,6 @@ public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
 
     @Override
     List<Invoice> findAll();
+
+    List<Invoice> findAllByUser_UserId(Long userId);
 }

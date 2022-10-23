@@ -1,9 +1,7 @@
 package com.kodilla.sportscentre.controllers.tofront;
 
-import com.kodilla.sportscentre.domain.User;
-import com.kodilla.sportscentre.domain.UserCreateDto;
-import com.kodilla.sportscentre.domain.UserEditDto;
-import com.kodilla.sportscentre.domain.UserOldNew;
+import com.kodilla.sportscentre.domain.*;
+import com.kodilla.sportscentre.exceptions.CardNotFoundByUserId;
 import com.kodilla.sportscentre.exceptions.CardNotFoundException;
 import com.kodilla.sportscentre.exceptions.UserNotFoundException;
 import com.kodilla.sportscentre.services.UserCardService;
@@ -21,7 +19,7 @@ public class UserCardContr {
     private final UserCardService userCardService;
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserOldNew> editUser(@RequestBody UserEditDto userEditDto) throws UserNotFoundException {
+    public ResponseEntity<UserOldNewDto> editUser(@RequestBody UserEditDto userEditDto) throws UserNotFoundException {
         return ResponseEntity.ok(userCardService.editUser(userEditDto));
     }
 
@@ -34,5 +32,10 @@ public class UserCardContr {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createUser(@RequestBody UserCreateDto userCreateDto) throws CardNotFoundException {
         return ResponseEntity.ok(userCardService.createUser(userCreateDto));
+    }
+
+    @GetMapping(value = "{userId}")
+    public ResponseEntity<Card> getCardByUserId(@PathVariable Long userId) throws CardNotFoundByUserId {
+        return ResponseEntity.ok(userCardService.getCardByUserId(userId));
     }
 }

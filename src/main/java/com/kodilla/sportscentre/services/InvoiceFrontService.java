@@ -7,6 +7,8 @@ import com.kodilla.sportscentre.repositories.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class InvoiceFrontService {
@@ -23,5 +25,10 @@ public class InvoiceFrontService {
         Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(InvoiceNotFoundException::new);
         invoice.setPaymentStatus(PaymentStatus.NOTPAID);
         return invoiceRepository.save(invoice);
+    }
+
+    public List<Invoice> getInvoicesByUserId(Long userId) {
+        List<Invoice> invoices = invoiceRepository.findAllByUser_UserId(userId);
+        return invoices;
     }
 }

@@ -28,7 +28,7 @@ public class AccountController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/login")
     public ResponseEntity<AccountOutDto> login(@RequestBody AccountInDto accountInDto) throws
             WrongUsernameException, WrongPasswordException {
         AccountOutDto accountOutDto = accountService.login(accountInDto);

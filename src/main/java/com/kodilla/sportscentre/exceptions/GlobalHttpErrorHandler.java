@@ -48,4 +48,9 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleWrongAdminCreateKey(ThisUsernameIsTaken exception) {
         return new ResponseEntity<>("This username is already taken, please try another one", HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(CardNotFoundByUserId.class)
+    public ResponseEntity<Object> handleCardNotFoundByUserId(CardNotFoundByUserId exception) {
+        return new ResponseEntity<>("You don't have card, please ask for it help centre", HttpStatus.BAD_REQUEST);
+    }
 }

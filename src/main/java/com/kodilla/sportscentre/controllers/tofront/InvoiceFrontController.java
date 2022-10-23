@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/invoice_status")
 @RequiredArgsConstructor
@@ -23,5 +25,10 @@ public class InvoiceFrontController {
     @PutMapping(value = "/not_paid/{invoiceId}")
     public ResponseEntity<Invoice> setPaymentNotPaidStatus(@PathVariable Long invoiceId) throws InvoiceNotFoundException {
         return ResponseEntity.ok(invoiceFrontService.setPaymentNotPaidStatus(invoiceId));
+    }
+
+    @GetMapping(value = "{userId}")
+    public ResponseEntity<List<Invoice>> getInvoicesByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(invoiceFrontService.getInvoicesByUserId(userId));
     }
 }

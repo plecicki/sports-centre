@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserOldNew {
+public class UserOldNewDto {
     private User oldUser;
     private User newUser;
 }

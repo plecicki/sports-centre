@@ -1,6 +1,7 @@
 package com.kodilla.sportscentre.services;
 
 import com.kodilla.sportscentre.domain.*;
+import com.kodilla.sportscentre.exceptions.CardNotFoundByUserId;
 import com.kodilla.sportscentre.exceptions.CardNotFoundException;
 import com.kodilla.sportscentre.exceptions.UserNotFoundException;
 import com.kodilla.sportscentre.mappers.CardMapper;
@@ -19,7 +20,7 @@ public class UserCardService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserOldNew editUser(final UserEditDto userEditDto) throws UserNotFoundException {
+    public UserOldNewDto editUser(final UserEditDto userEditDto) throws UserNotFoundException {
         User user = userRepository.findById(userEditDto.getUserId()).orElseThrow(UserNotFoundException::new);
 
         UserToClone userToClone = userMapper.mapFromUserToUTClone(user);
@@ -33,8 +34,8 @@ public class UserCardService {
 
         User oldUser = userMapper.mapFromUTCloneToUser(clonedOldUser);
         User newUser = userRepository.save(userMapper.mapToUserFromEdit(userEditDto));
-        UserOldNew userOldNew = new UserOldNew(oldUser, newUser);
-        return userOldNew;
+        UserOldNewDto userOldNewDto = new UserOldNewDto(oldUser, newUser);
+        return userOldNewDto;
     }
 
     public void deleteUser(final Long userId) throws UserNotFoundException {
@@ -59,5 +60,10 @@ public class UserCardService {
             throw new CardNotFoundException();
         }
         return savedUser;
+    }
+
+    public Card getCardByUserId(final Long userId) throws CardNotFoundByUserId {
+        Card card = cardRepository.findByUser_UserId(userId).orElseThrow(CardNotFoundByUserId::new);
+        return card;
     }
 }

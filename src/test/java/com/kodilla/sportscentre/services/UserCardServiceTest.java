@@ -4,7 +4,6 @@ import com.kodilla.sportscentre.domain.*;
 import com.kodilla.sportscentre.domain.enums.CardStatus;
 import com.kodilla.sportscentre.domain.enums.Goals;
 import com.kodilla.sportscentre.exceptions.CardNotFoundException;
-import com.kodilla.sportscentre.exceptions.UserNotFoundException;
 import com.kodilla.sportscentre.repositories.CardRepository;
 import com.kodilla.sportscentre.repositories.UserRepository;
 import org.junit.jupiter.api.Assertions;
@@ -62,20 +61,20 @@ public class UserCardServiceTest {
         );
 
         //When
-        UserOldNew userOldNew = userCardService.editUser(userEditDto);
+        UserOldNewDto userOldNewDto = userCardService.editUser(userEditDto);
 
         //Then
-        Assertions.assertEquals("nameOld", userOldNew.getOldUser().getName());
-        Assertions.assertEquals("surnameOld", userOldNew.getOldUser().getSurname());
-        Assertions.assertEquals("emailOld", userOldNew.getOldUser().getEmail());
-        Assertions.assertEquals("phoneOld", userOldNew.getOldUser().getPhone());
-        Assertions.assertEquals("nameNew", userOldNew.getNewUser().getName());
-        Assertions.assertEquals("surnameNew", userOldNew.getNewUser().getSurname());
-        Assertions.assertEquals("emailNew", userOldNew.getNewUser().getEmail());
-        Assertions.assertEquals("phoneNew", userOldNew.getNewUser().getPhone());
+        Assertions.assertEquals("nameOld", userOldNewDto.getOldUser().getName());
+        Assertions.assertEquals("surnameOld", userOldNewDto.getOldUser().getSurname());
+        Assertions.assertEquals("emailOld", userOldNewDto.getOldUser().getEmail());
+        Assertions.assertEquals("phoneOld", userOldNewDto.getOldUser().getPhone());
+        Assertions.assertEquals("nameNew", userOldNewDto.getNewUser().getName());
+        Assertions.assertEquals("surnameNew", userOldNewDto.getNewUser().getSurname());
+        Assertions.assertEquals("emailNew", userOldNewDto.getNewUser().getEmail());
+        Assertions.assertEquals("phoneNew", userOldNewDto.getNewUser().getPhone());
 
         //CleanUp
-        userRepository.delete(userOldNew.getNewUser());
+        userRepository.delete(userOldNewDto.getNewUser());
         cardRepository.delete(savedCard);
     }
 

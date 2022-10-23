@@ -74,9 +74,9 @@ public class UserCardContrTest {
                 true,
                 LocalDate.now().plusMonths(1)
         );
-        UserOldNew userOldNew = new UserOldNew(user1, user2);
+        UserOldNewDto userOldNewDto = new UserOldNewDto(user1, user2);
 
-        when(userCardService.editUser(userEditDto)).thenReturn(userOldNew);
+        when(userCardService.editUser(userEditDto)).thenReturn(userOldNewDto);
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
