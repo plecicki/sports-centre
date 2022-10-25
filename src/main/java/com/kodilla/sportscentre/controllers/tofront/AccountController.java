@@ -34,4 +34,9 @@ public class AccountController {
         AccountOutDto accountOutDto = accountService.login(accountInDto);
         return ResponseEntity.ok(accountOutDto);
     }
+
+    @GetMapping(value = "{username}")
+    public ResponseEntity<Boolean> userExistsByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(accountService.existsUserByUsername(username));
+    }
 }

@@ -63,4 +63,8 @@ public class AccountService {
             throw new WrongPasswordException();
         }
     }
+
+    public Boolean existsUserByUsername(String name) {
+        return accountRepository.existsByUsername(name);
+    }
 }
