@@ -23,7 +23,7 @@ public class UserCardContr {
         return ResponseEntity.ok(userCardService.editUser(userEditDto));
     }
 
-    @DeleteMapping(value = "{userId}")
+    @DeleteMapping(value = "user/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) throws UserNotFoundException {
         userCardService.deleteUser(userId);
         return ResponseEntity.ok().build();
@@ -37,5 +37,11 @@ public class UserCardContr {
     @GetMapping(value = "{userId}")
     public ResponseEntity<Card> getCardByUserId(@PathVariable Long userId) throws CardNotFoundByUserId {
         return ResponseEntity.ok(userCardService.getCardByUserId(userId));
+    }
+
+    @DeleteMapping(value = "card/{cardId}")
+    public ResponseEntity<Void> deleteCard(@PathVariable Long cardId) throws CardNotFoundException {
+        userCardService.deleteCard(cardId);
+        return ResponseEntity.ok().build();
     }
 }

@@ -66,4 +66,14 @@ public class UserCardService {
         Card card = cardRepository.findByUser_UserId(userId).orElseThrow(CardNotFoundByUserId::new);
         return card;
     }
+
+    public void deleteCard(final Long cardId) throws CardNotFoundException {
+        if(!cardRepository.existsById(cardId)) throw new CardNotFoundException();
+        if (userRepository.findByCard_CardId(cardId).isPresent()) {
+            User user = userRepository.findByCard_CardId(cardId).get();
+            user.setCard(null);
+            userRepository.save(user);
+        }
+        cardRepository.deleteById(cardId);
+    }
 }

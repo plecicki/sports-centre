@@ -30,6 +30,9 @@ public class EmailScheduler {
     public void sendAlertEmailsAndExtendSubscription() {
         List<User> userList = userRepository.findAll();
         for (User user: userList) {
+            if (user.getAutoExtension() == null) {
+                user.setAutoExtension(false);
+            }
             if (user.getAutoExtension()) {
                 if (user.getSubValidity().equals(LocalDate.now())) {
                     simpleEmailService.sendDaily(
