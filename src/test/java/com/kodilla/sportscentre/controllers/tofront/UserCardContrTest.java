@@ -76,7 +76,7 @@ public class UserCardContrTest {
         );
         UserOldNewDto userOldNewDto = new UserOldNewDto(user1, user2);
 
-        when(userCardService.editUser(userEditDto)).thenReturn(userOldNewDto);
+        when(userCardService.editUserWithClone(userEditDto)).thenReturn(userOldNewDto);
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()

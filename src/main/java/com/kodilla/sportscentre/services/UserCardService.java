@@ -20,7 +20,7 @@ public class UserCardService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserOldNewDto editUser(final UserEditDto userEditDto) throws UserNotFoundException {
+    public UserOldNewDto editUserWithClone(final UserEditDto userEditDto) throws UserNotFoundException {
         User user = userRepository.findById(userEditDto.getUserId()).orElseThrow(UserNotFoundException::new);
 
         UserToClone userToClone = userMapper.mapFromUserToUTClone(user);
@@ -50,6 +50,25 @@ public class UserCardService {
 
     public User createUser(final UserCreateDto userCreateDto) throws CardNotFoundException {
         User user = userMapper.mapToUserFromCreate(userCreateDto);
+        Card card = cardRepository.findByCardId(user.getCard().getCardId()).orElseThrow(CardNotFoundException::new);
+        User savedUser;
+        if (card.getUser() == null) {
+            savedUser = userRepository.save(user);
+            card.setUser(savedUser);
+            cardRepository.save(card);
+        } else {
+            throw new CardNotFoundException();
+        }
+        return savedUser;
+    }
+
+    public User editUser(final UserEditDto userEditDto) throws CardNotFoundException, UserNotFoundException {
+        User oldUser = userRepository.findById(userEditDto.getUserId()).orElseThrow(UserNotFoundException::new);
+        Card oldCard = cardRepository.findByCardId(oldUser.getCard().getCardId()).orElseThrow(CardNotFoundException::new);
+        oldCard.setUser(null);
+        cardRepository.save(oldCard);
+
+        User user = userMapper.mapToUserFromEdit(userEditDto);
         Card card = cardRepository.findByCardId(user.getCard().getCardId()).orElseThrow(CardNotFoundException::new);
         User savedUser;
         if (card.getUser() == null) {

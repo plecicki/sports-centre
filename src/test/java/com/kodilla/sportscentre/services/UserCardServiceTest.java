@@ -61,7 +61,7 @@ public class UserCardServiceTest {
         );
 
         //When
-        UserOldNewDto userOldNewDto = userCardService.editUser(userEditDto);
+        UserOldNewDto userOldNewDto = userCardService.editUserWithClone(userEditDto);
 
         //Then
         Assertions.assertEquals("nameOld", userOldNewDto.getOldUser().getName());
