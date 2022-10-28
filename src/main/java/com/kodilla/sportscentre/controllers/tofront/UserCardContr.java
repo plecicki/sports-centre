@@ -18,7 +18,7 @@ public class UserCardContr {
 
     private final UserCardService userCardService;
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/clone")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/clone")
     public ResponseEntity<UserOldNewDto> editUserWithClone(@RequestBody UserEditDto userEditDto) throws UserNotFoundException {
         return ResponseEntity.ok(userCardService.editUserWithClone(userEditDto));
     }

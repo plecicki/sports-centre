@@ -33,6 +33,9 @@ public class EmailScheduler {
             if (user.getAutoExtension() == null) {
                 user.setAutoExtension(false);
             }
+            if (user.getSubValidity() == null) {
+                user.setSubValidity(LocalDate.now().plusYears(10000));
+            }
             if (user.getAutoExtension()) {
                 if (user.getSubValidity().equals(LocalDate.now())) {
                     simpleEmailService.sendDaily(
