@@ -6,6 +6,7 @@ import com.kodilla.sportscentre.controllers.serializer.LocalDateSerializer;
 import com.kodilla.sportscentre.domain.Order;
 import com.kodilla.sportscentre.domain.OrderCreateDto;
 import com.kodilla.sportscentre.domain.OrderDecInDto;
+import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.services.SupplementsService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +40,14 @@ public class SupplementsControllerTest {
                 true,
                 true,
                 false,
-                true
+                true,
+                new User()
         );
         Order order = new Order(
                 1L,
                 " BCAA Caffeine Citrulline Protein",
-                BigDecimal.valueOf(148.0)
+                BigDecimal.valueOf(148.0),
+                new User()
         );
 
         when(supplementsService.createOrder(orderDecInDto)).thenReturn(order);

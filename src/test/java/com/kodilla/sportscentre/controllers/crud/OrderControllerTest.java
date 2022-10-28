@@ -6,6 +6,7 @@ import com.kodilla.sportscentre.controllers.serializer.LocalDateSerializer;
 import com.kodilla.sportscentre.domain.Order;
 import com.kodilla.sportscentre.domain.OrderCreateDto;
 import com.kodilla.sportscentre.domain.OrderEditDto;
+import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.services.OrderService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -39,9 +40,9 @@ public class OrderControllerTest {
     void shouldFetchListWithOrders() throws Exception {
         //Given
         List<Order> orderList = Arrays.asList(
-                new Order(1L, "Description1", BigDecimal.valueOf(100.0)),
-                new Order(2L, "Description2", BigDecimal.valueOf(100.0)),
-                new Order(3L, "Description3", BigDecimal.valueOf(100.0))
+                new Order(1L, "Description1", BigDecimal.valueOf(100.0), new User()),
+                new Order(2L, "Description2", BigDecimal.valueOf(100.0), new User()),
+                new Order(3L, "Description3", BigDecimal.valueOf(100.0), new User())
         );
 
         when(orderService.getAllOrders()).thenReturn(orderList);
@@ -66,7 +67,7 @@ public class OrderControllerTest {
     @Test
     void shouldFetchOrder() throws Exception {
         //Given
-        Order order = new Order(1L, "Description1", BigDecimal.valueOf(100.0));
+        Order order = new Order(1L, "Description1", BigDecimal.valueOf(100.0), new User());
 
         when(orderService.getOrderById(1L)).thenReturn(order);
 
@@ -83,8 +84,8 @@ public class OrderControllerTest {
     @Test
     void shouldCreateOrder() throws Exception {
         //Given
-        Order order = new Order(1L, "Description1", BigDecimal.valueOf(100.0));
-        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0));
+        Order order = new Order(1L, "Description1", BigDecimal.valueOf(100.0), new User());
+        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0), new User());
 
         when(orderService.createOrder(orderCreateDto)).thenReturn(order);
 
@@ -107,8 +108,8 @@ public class OrderControllerTest {
     @Test
     void shouldUpdateOrder() throws Exception {
         //Given
-        Order order = new Order(1L, "Description1", BigDecimal.valueOf(100.0));
-        OrderEditDto orderEditDto = new OrderEditDto(1L, "Description1", BigDecimal.valueOf(100.0));
+        Order order = new Order(1L, "Description1", BigDecimal.valueOf(100.0), new User());
+        OrderEditDto orderEditDto = new OrderEditDto(1L, "Description1", BigDecimal.valueOf(100.0), new User());
 
         when(orderService.editOrder(orderEditDto)).thenReturn(order);
 

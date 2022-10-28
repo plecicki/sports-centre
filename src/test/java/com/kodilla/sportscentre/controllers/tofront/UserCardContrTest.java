@@ -99,7 +99,7 @@ public class UserCardContrTest {
         //Given & When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .delete("/v1/usercard/1")
+                        .delete("/v1/usercard/user/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is(200));
     }

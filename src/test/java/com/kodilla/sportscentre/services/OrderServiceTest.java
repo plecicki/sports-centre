@@ -3,6 +3,7 @@ package com.kodilla.sportscentre.services;
 import com.kodilla.sportscentre.domain.Order;
 import com.kodilla.sportscentre.domain.OrderCreateDto;
 import com.kodilla.sportscentre.domain.OrderEditDto;
+import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.exceptions.OrderNotFoundException;
 import com.kodilla.sportscentre.repositories.OrderRepository;
 import org.junit.jupiter.api.Assertions;
@@ -26,9 +27,9 @@ public class OrderServiceTest {
     @Test
     void shouldFetchListWithOrders() {
         //Given
-        OrderCreateDto order1 = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0));
-        OrderCreateDto order2 = new OrderCreateDto("Description2", BigDecimal.valueOf(200.0));
-        OrderCreateDto order3 = new OrderCreateDto("Description3", BigDecimal.valueOf(300.0));
+        OrderCreateDto order1 = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0), null);
+        OrderCreateDto order2 = new OrderCreateDto("Description2", BigDecimal.valueOf(200.0), null);
+        OrderCreateDto order3 = new OrderCreateDto("Description3", BigDecimal.valueOf(300.0), null);
 
         orderService.createOrder(order1);
         orderService.createOrder(order2);
@@ -51,7 +52,7 @@ public class OrderServiceTest {
     @Test
     void shouldFetchOrder() throws OrderNotFoundException {
         //Given
-        OrderCreateDto order1 = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0));
+        OrderCreateDto order1 = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0), null);
         Order createdOrder = orderService.createOrder(order1);
 
         //When
@@ -67,7 +68,7 @@ public class OrderServiceTest {
     @Test
     void createOrderTest() {
         //Given
-        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0));
+        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0), null);
 
         //When
         Order order = orderService.createOrder(orderCreateDto);
@@ -82,9 +83,9 @@ public class OrderServiceTest {
     @Test
     void editOrderTest() {
         //Given
-        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0));
+        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0), null);
         Order order = orderService.createOrder(orderCreateDto);
-        OrderEditDto orderEditDto = new OrderEditDto(order.getOrderId(), "Description2", BigDecimal.valueOf(200.0));
+        OrderEditDto orderEditDto = new OrderEditDto(order.getOrderId(), "Description2", BigDecimal.valueOf(200.0), null);
 
         //When
         Order editedOrder = orderService.editOrder(orderEditDto);
@@ -99,7 +100,7 @@ public class OrderServiceTest {
     @Test
     void deleteOrderTest() {
         //Given
-        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0));
+        OrderCreateDto orderCreateDto = new OrderCreateDto("Description1", BigDecimal.valueOf(100.0), null);
         Order order = orderService.createOrder(orderCreateDto);
 
         //When

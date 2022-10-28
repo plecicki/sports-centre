@@ -3,6 +3,7 @@ package com.kodilla.sportscentre.mappers;
 import com.kodilla.sportscentre.domain.Order;
 import com.kodilla.sportscentre.domain.OrderCreateDto;
 import com.kodilla.sportscentre.domain.OrderEditDto;
+import com.kodilla.sportscentre.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class OrderMapperTest {
         //Given
         OrderCreateDto orderCreateDto = new OrderCreateDto(
                 "description1",
-                BigDecimal.valueOf(100.0)
+                BigDecimal.valueOf(100.0),
+                new User()
         );
 
         //When
@@ -41,7 +43,8 @@ public class OrderMapperTest {
         OrderEditDto orderEditDto = new OrderEditDto(
                 1L,
                 "description1",
-                BigDecimal.valueOf(100.0)
+                BigDecimal.valueOf(100.0),
+                new User()
         );
 
         //When
@@ -58,7 +61,8 @@ public class OrderMapperTest {
         Order order = new Order(
                 1L,
                 "description1",
-                BigDecimal.valueOf(100.0)
+                BigDecimal.valueOf(100.0),
+                new User()
         );
 
         //When
@@ -75,7 +79,8 @@ public class OrderMapperTest {
         Order order = new Order(
                 1L,
                 "description1",
-                BigDecimal.valueOf(100.0)
+                BigDecimal.valueOf(100.0),
+                new User()
         );
 
         //When
@@ -92,17 +97,20 @@ public class OrderMapperTest {
         Order order1 = new Order(
                 1L,
                 "description1",
-                BigDecimal.valueOf(100.0)
+                BigDecimal.valueOf(100.0),
+                new User()
         );
         Order order2 = new Order(
                 2L,
                 "description2",
-                BigDecimal.valueOf(200.0)
+                BigDecimal.valueOf(200.0),
+                new User()
         );
         Order order3 = new Order(
                 3L,
                 "description3",
-                BigDecimal.valueOf(300.0)
+                BigDecimal.valueOf(300.0),
+                new User()
         );
         List<Order> orderList = Arrays.asList(order1, order2, order3);
 
@@ -124,17 +132,20 @@ public class OrderMapperTest {
         Order order1 = new Order(
                 1L,
                 "description1",
-                BigDecimal.valueOf(100.0)
+                BigDecimal.valueOf(100.0),
+                new User()
         );
         Order order2 = new Order(
                 2L,
                 "description2",
-                BigDecimal.valueOf(200.0)
+                BigDecimal.valueOf(200.0),
+                new User()
         );
         Order order3 = new Order(
                 3L,
                 "description3",
-                BigDecimal.valueOf(300.0)
+                BigDecimal.valueOf(300.0),
+                new User()
         );
         List<Order> orderList = Arrays.asList(order1, order2, order3);
 
