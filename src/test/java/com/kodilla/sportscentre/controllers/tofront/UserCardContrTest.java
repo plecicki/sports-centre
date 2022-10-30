@@ -87,6 +87,56 @@ public class UserCardContrTest {
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
+                        .post("/v1/usercard/clone")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("UTF-8")
+                        .content(jsonContent))
+                .andExpect(MockMvcResultMatchers.status().is(200));
+    }
+
+    @Test
+    void shouldEditUser() throws Exception {
+
+        //Given
+        User user = new User(1L,
+                "nameNew", "surnameNew",
+                LocalDate.of(1990, 12, 12),
+                "emailNew",
+                "phoneNew",
+                Goals.HEALTH,
+                true,
+                true,
+                true,
+                null,
+                true,
+                new ArrayList<>(),
+                LocalDate.now().plusMonths(1)
+        );
+        UserEditDto userEditDto = new UserEditDto(1L,
+                "nameNew", "surnameNew",
+                LocalDate.of(1990, 12, 12),
+                "emailNew",
+                "phoneNew",
+                Goals.HEALTH,
+                true,
+                true,
+                true,
+                null,
+                true,
+                LocalDate.now().plusMonths(1)
+        );;
+
+        when(userCardService.editUser(userEditDto)).thenReturn(user);
+
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+                .create();
+        String jsonContent = gson.toJson(userEditDto);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
                         .put("/v1/usercard")
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
