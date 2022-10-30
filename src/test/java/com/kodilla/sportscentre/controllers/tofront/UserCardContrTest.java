@@ -4,8 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kodilla.sportscentre.controllers.serializer.LocalDateSerializer;
 import com.kodilla.sportscentre.domain.*;
+import com.kodilla.sportscentre.domain.enums.CardStatus;
 import com.kodilla.sportscentre.domain.enums.Goals;
+import com.kodilla.sportscentre.repositories.CardRepository;
+import com.kodilla.sportscentre.repositories.UserRepository;
 import com.kodilla.sportscentre.services.UserCardService;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -200,6 +205,38 @@ public class UserCardContrTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
+                .andExpect(MockMvcResultMatchers.status().is(200));
+    }
+
+    @Test
+    void getCardByUserIdTest() throws Exception {
+
+        //Given
+        Card card = new Card(
+                0L,
+                new User(),
+                "password",
+                CardStatus.AVAILABLE
+        );
+
+        when(userCardService.getCardByUserId(10L)).thenReturn(card);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get("/v1/usercard/10")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.accessPass", Matchers.is("password")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.cardStatus", Matchers.is("AVAILABLE")));
+    }
+
+    @Test
+    void shouldDeleteCard() throws Exception {
+        //Given & When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .delete("/v1/usercard/card/1")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is(200));
     }
 }

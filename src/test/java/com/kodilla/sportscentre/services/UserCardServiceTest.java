@@ -169,4 +169,63 @@ public class UserCardServiceTest {
         userRepository.delete(userToDelete);
         cardRepository.delete(cardToDelete);
     }
+
+    @Test
+    void getCardByUserIdTest() throws Exception {
+
+        //Given
+        User user = new User(0L,
+                "nameNew", "surnameNew",
+                LocalDate.of(1990, 12, 12),
+                "emailNew",
+                "phoneNew",
+                Goals.HEALTH,
+                true,
+                true,
+                true,
+                null,
+                true,
+                new ArrayList<>(),
+                LocalDate.now().plusMonths(1)
+        );
+        user = userRepository.save(user);
+        Card card = new Card(
+                0L,
+                user,
+                "password",
+                CardStatus.AVAILABLE
+        );
+        card = cardRepository.save(card);
+
+        //When
+        Card foundCard = userCardService.getCardByUserId(user.getUserId());
+
+        //Then
+        Assertions.assertEquals(card.getCardId(), foundCard.getCardId());
+
+        //CleanUp
+        cardRepository.delete(card);
+        userRepository.delete(user);
+    }
+
+    @Test
+    void deleteCard() throws Exception {
+        //Given
+        Card card = new Card(0L, null, "accessPass1", CardStatus.AVAILABLE);
+        card = cardRepository.save(card);
+
+        //When
+        userCardService.deleteCard(card.getCardId());
+
+        //Then
+        boolean cardNotFound = false;
+        Card cardAfterDelete = new Card();
+        try {
+            cardAfterDelete = cardRepository.findById(card.getCardId()).orElseThrow(Exception::new);
+        } catch (Exception e) {
+            cardNotFound = true;
+        }
+        Assertions.assertNull(cardAfterDelete.getCardId());
+        Assertions.assertTrue(cardNotFound);
+    }
 }
