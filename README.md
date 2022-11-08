@@ -1,13 +1,28 @@
 # Sports Centre - Back-End [PL/ENG]
 ## Front-End repository with description and gif's presenting the program in README.md [PL/ENG]
-SOON
+https://github.com/plecicki/sports-centre-frontend
+GIFS SOON
 ## Table of contents / Spis treści
 * [Jak uruchomić projekt? [PL]](#uruchomienie)
-* [Opis projektu [PL]](#opis)
+* [Opis back-end'u projektu [PL]](#opis)
 * [How to start a project [ENG]](#start)
-* [Project description [ENG]](#description)
+* [Project back-end description [ENG]](#description)
 ## Jak uruchomić projekt? [PL]<a name="uruchomienie"></a>
-## Opis projektu [PL]<a name="opis"></a>
+Przed uruchomieniem należy podjąć następujące kroki:
+### Obowiązkowo
+- Uruchomić bazę danych dołączoną do projektu w pliku SOON lub utworzyć własną o nazwie "sports_centre" (Wystarczy utworzyć bazę bez tabel. Tabele zostaną utworzone przez Hibernate przy uruchomieniu).
+- Stworzyć użytkownika o danych zawartych w pliku application.properties. Login: sports_user, Hasło: sports_user oraz nadać mu uprawnienia do operacji w bazie.
+- Stworzyć zmienną środowiskową o nazwie "CREATE_ADMIN_KEY" o dowolnej wartości, która przyda się w panelu rejestracyjnym przy tworzeniu konta administratora. Można również na sztywno przypisać jakiś wymyślony klucz w pliku application.properties do pola "create.admin.key";
+### Opcjonalnie (Niewypełnienie ich spowoduje utratę niektórych funkcjonalności oraz pojawianie się komunikatów w konsoli po stronie back-endu aplikacji)
+- W celu przetestowania funkcji wysyłania maili przez program należy uzupełnić dane konfiguracyjne w pliku application.properties. Przykładowe jest już zawarte w tym pliku, gdzie username oraz password są schowane w zmiennych środowiskowych. Nawet w przypadku, gdy nie mamy zamiaru wprowadzić danych konfiguracyjnych do własnego konta np. w serwisie "MailTrap" nie należy kasować przykładowych danych, ponieważ program się nie skompiluje, a tak to jedynie poinformuje w konsoli, że ma problem z autentykacją, ale reszta funkcji projektu będzie działała prawidłowo pomimo komunikatu w konsoli o problemie z autentykacją.
+- W celu wyświetlenia pogody na dzień jutrzejszy należy wpisać klucz dostępowy do pola "weather.key" w application.properties do serwisu VisualCrossing, który można wyrobić na stronie https://www.visualcrossing.com/ za darmo. W przypadku niespełnienia tego warunku zostanie wyświetlony label na stronie z komunikatem o błędzie.<br>
+![image](https://user-images.githubusercontent.com/84147482/200683503-3d4868af-c4be-4a5e-a258-265b8f08b2ec.png)
+- W celu wyświetlenia danych na temat filmów z YouTube należy podać klucz w pliku application.properties i przypisać go do pola "youtube.key". W przypadku niespełnienia tego kryterium zostanie wyświetlony label informujący o błędzie. Klucz można wyrobić tutaj: https://developers.google.com/youtube/v3 <br>
+![image](https://user-images.githubusercontent.com/84147482/200683723-3b5d5c9e-0a86-4018-8536-a3fda2c8d220.png) <br>
+W razie uruchomienia aplikacji bez podania kluczy zostaniemy poinformowani komunikatami: <br>
+![image](https://user-images.githubusercontent.com/84147482/200684197-1a174dd8-ec5c-40ac-9f0c-70c0458084fe.png)
+
+## Opis back-end'u projektu [PL]<a name="opis"></a>
 Projekt pełni zadania zarządzania danymi w bazie danych ośrodka sportowego, który przetrzymuje dane na temat użytkowników, kart, faktur, kont oraz zamówień.
 ### Kontrolery
 #### Kontrolery administracyjne
@@ -74,4 +89,4 @@ Projekt zawiera dwie klasy typu Client które wysyłają żądania i pobierają 
 ### Konfiguracja
 Klasy konfiguracyjne umożliwiają pobieranie danych z pliku application.properties i tym samym danych ze zmiennych środowiskowych, co umożliwia utajnienie danych wrażliwych jak np. klucze do zewnętrznych API, co uczyniłem.
 ## How to start a project [ENG]<a name="start"></a>
-## Project description [ENG]<a name="description"></a>
+## Project back-end description [ENG]<a name="description"></a>
