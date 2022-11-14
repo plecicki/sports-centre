@@ -83,15 +83,15 @@ public class InvoiceServiceTest {
         Assertions.assertEquals(savedInvoice1.getInvoiceId(), invoiceList.get(invoiceList.size()-3).getInvoiceId());
         Assertions.assertEquals(PaymentStatus.PAID, invoiceList.get(invoiceList.size()-3).getPaymentStatus());
         Assertions.assertEquals(LocalDate.of(2024, 12, 12), invoiceList.get(invoiceList.size()-3).getPaymentDeadline());
-        Assertions.assertEquals(BigDecimal.valueOf(150.0), invoiceList.get(invoiceList.size()-3).getSum());
+        Assertions.assertTrue(invoiceList.get(invoiceList.size()-3).getSum().toString().contains("150.0"));
         Assertions.assertEquals(savedInvoice2.getInvoiceId(), invoiceList.get(invoiceList.size()-2).getInvoiceId());
         Assertions.assertEquals(PaymentStatus.PAID, invoiceList.get(invoiceList.size()-2).getPaymentStatus());
         Assertions.assertEquals(LocalDate.of(2024, 12, 12), invoiceList.get(invoiceList.size()-2).getPaymentDeadline());
-        Assertions.assertEquals(BigDecimal.valueOf(150.0), invoiceList.get(invoiceList.size()-2).getSum());
+        Assertions.assertTrue(invoiceList.get(invoiceList.size()-2).getSum().toString().contains("150.0"));
         Assertions.assertEquals(savedInvoice3.getInvoiceId(), invoiceList.get(invoiceList.size()-1).getInvoiceId());
         Assertions.assertEquals(PaymentStatus.PAID, invoiceList.get(invoiceList.size()-1).getPaymentStatus());
         Assertions.assertEquals(LocalDate.of(2024, 12, 12), invoiceList.get(invoiceList.size()-1).getPaymentDeadline());
-        Assertions.assertEquals(BigDecimal.valueOf(150.0), invoiceList.get(invoiceList.size()-1).getSum());
+        Assertions.assertTrue(invoiceList.get(invoiceList.size()-1).getSum().toString().contains("150.0"));
 
         //CleanUp
         invoiceRepository.delete(savedInvoice1);
@@ -136,7 +136,7 @@ public class InvoiceServiceTest {
         Assertions.assertEquals(savedInvoice1.getInvoiceId(), invoiceFromDB.getInvoiceId());
         Assertions.assertEquals(PaymentStatus.PAID, invoiceFromDB.getPaymentStatus());
         Assertions.assertEquals(LocalDate.of(2024, 12, 12), invoiceFromDB.getPaymentDeadline());
-        Assertions.assertEquals(BigDecimal.valueOf(150.0), invoiceFromDB.getSum());
+        Assertions.assertTrue(invoiceFromDB.getSum().toString().contains("150.0"));
 
         //CleanUp
         invoiceRepository.delete(savedInvoice1);

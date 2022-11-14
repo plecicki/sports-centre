@@ -31,5 +31,7 @@ public class YouTubeServiceTest {
         Assertions.assertNotNull(videos.get(7));
         Assertions.assertNotNull(videos.get(8));
         Assertions.assertNotNull(videos.get(9));
+
+        Assertions.assertTrue(videos.size() >= 1);
     }
 }
