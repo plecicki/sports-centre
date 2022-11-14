@@ -8,10 +8,11 @@ GIFS AND IMAGES SOON
 * [How to start a project [ENG]](#start)
 * [Project back-end description [ENG]](#description)
 ## Jak uruchomić projekt? [PL]<a name="uruchomienie"></a>
+Najpierw należy uruchomić back-end aplikacji zawarty w tym repozytorium, potem front-end zawarty w repozytorium, do którego prowadzi link powyżej.
 Przed uruchomieniem należy podjąć następujące kroki:
 ### Obowiązkowo
-- Uruchomić bazę danych dołączoną do projektu w pliku SOON lub utworzyć własną o nazwie "sports_centre" (Wystarczy utworzyć bazę bez tabel. Tabele zostaną utworzone przez Hibernate przy uruchomieniu).
-- Stworzyć użytkownika o danych zawartych w pliku application.properties. Login: sports_user, Hasło: sports_user oraz nadać mu uprawnienia do operacji w bazie.
+- Uruchomić bazę danych MySQL dołączoną do projektu w folderze "SportsCentreDB" lub utworzyć własną o nazwie "sports_centre" (Wystarczy utworzyć bazę bez tabel. Tabele zostaną utworzone przez Hibernate przy uruchomieniu).
+- Stworzyć użytkownika w bazie danych o danych logowania zawartych w pliku application.properties. Login: sports_user, Hasło: sports_user oraz nadać mu uprawnienia do operacji w bazie.
 - Stworzyć zmienną środowiskową o nazwie "CREATE_ADMIN_KEY" o dowolnej wartości, która przyda się w panelu rejestracyjnym przy tworzeniu konta administratora. Można również na sztywno przypisać jakiś wymyślony klucz w pliku application.properties do pola "create.admin.key"
 ### Opcjonalnie (Niewypełnienie ich spowoduje utratę niektórych funkcjonalności oraz pojawianie się komunikatów w konsoli po stronie back-endu aplikacji)
 - W celu przetestowania funkcji wysyłania maili przez program należy uzupełnić dane konfiguracyjne w pliku application.properties. Przykładowe jest już zawarte w tym pliku, gdzie username oraz password są schowane w zmiennych środowiskowych. Nawet w przypadku, gdy nie mamy zamiaru wprowadzić danych konfiguracyjnych do własnego konta np. w serwisie "MailTrap" nie należy kasować przykładowych danych, ponieważ program się nie skompiluje, a tak to jedynie poinformuje w konsoli, że ma problem z autentykacją, ale reszta funkcji projektu będzie działała prawidłowo pomimo komunikatu w konsoli o problemie z autentykacją.
@@ -41,14 +42,14 @@ Te kontrolery zapewniają dostęp do żądań użytych we front-end'zie aplikacj
 - POST Utworzenie nowego konta
 - POST Logowanie
 - GET Sprawdzenie czy dany użytkownik istnieje po jego nazwie (do walidacji przy rejestracji)
-- PUT Ustawienie statusu faktury "Opłacona" po id faktury bez konieczności tworzenia ciała żądania (JSON, XML)
-- PUT Ustawienie statusu faktury "Nieopłacona" po id faktury bez konieczności tworzenia ciała żądania (JSON, XML)
-- GET Pobranie listy z fakturami po numerze id użytkownika
-- POST Utworzenie zamówienia w sklepie (Zwraca dane o zamówieniu (Wzorzez Dekorator w serwisie))
-- POST Edycja użytkownika, żadanie zwraca obiekt zawierający stare oraz nowe dane (Wzorzec Prototyp w serwisie)
-- PUT Edycja danych użytkownika z walidacją, czy przypisywana do niego karta istnieje. Ustawienie w ewentualnej starej karcie wartości w polu "user" na null
-- DELETE Usunięcie użytkownika po id. Jeśli istnieje karta mająca przypisanego usuwanego użytkownika, wtedy to pole w karcie zmienia się w null
-- POST Utworzenie użytkownika z walidacją, czy przypisywana karta do niego istnieje. Jeśli tak to wartość pola "user" jest zmieniana na id utworzonego użytkownika
+- PUT Ustawienie statusu faktury "Opłacona" po id faktury bez konieczności tworzenia ciała żądania (JSON, XML). Użyte do szybkiej zmiany statusu za pomocą jednego kliknięcia przycisku we front-endzie.
+- PUT Ustawienie statusu faktury "Nieopłacona" po id faktury bez konieczności tworzenia ciała żądania (JSON, XML). Użyte do szybkiej zmiany statusu za pomocą jednego kliknięcia przycisku we front-endzie.
+- GET Pobranie listy z fakturami po numerze id użytkownika. Użyte do przedstawienia użytkownikami tylko i wyłącznie jego własnych faktur.
+- POST Utworzenie zamówienia w sklepie (Zwraca dane o zamówieniu (Wzorzez Dekorator w serwisie)).
+- POST Edycja użytkownika, żadanie zwraca obiekt zawierający stare oraz nowe dane (Wzorzec Prototyp w serwisie). Użyte do edycji swoich własnych danych przez użytkownika.
+- PUT Edycja danych użytkownika z walidacją, czy przypisywana do niego karta istnieje. Ustawienie w ewentualnej starej karcie wartości w polu "user" na null.
+- DELETE Usunięcie użytkownika po id. Jeśli istnieje karta mająca przypisanego usuwanego użytkownika, wtedy to pole w karcie zmienia się w null.
+- POST Utworzenie użytkownika z walidacją, czy przypisywana karta do niego istnieje. Jeśli tak to wartość pola "user" w karcie jest zmieniana na id utworzonego użytkownika.
 - GET Pobranie karty po id użytkownika
 - DELETE Usuwanie karty po id z ewentualną zmianą pola użytkownika który ją posiadał na null
 - GET Pobranie pogody na jutro w miejsca wpisanego w application.properties z zewnętrznego API
@@ -97,9 +98,10 @@ Testy obejmują takie elementy programu jak kontrolery, serwisy, mappery i pliki
 ![image](https://user-images.githubusercontent.com/84147482/200803128-a7f29f6b-3994-4f06-a4fe-d4a72b2e4ad3.png)
 
 ## How to start a project [ENG]<a name="start"></a>
+First, you need to run the back-end of the application contained in this repository, then the front-end contained in the repository linked above.
 Before commissioning, the following steps must be taken:
 ### Obligatory
-- Run the database attached to the project in the SOON file or create your own named "sports_centre" (Just create a database without tables. The tables will be created by Hibernate at startup).
+- Run the database attached to the project in the "SportsCentreDB" folder or create your own named "sports_centre" (Just create a database without tables. The tables will be created by Hibernate at startup).
 - Create a user with the data contained in the application.properties file. Login: sports_user, Password: sports_user and give him permission to operate in the database.
 - Create an environment variable named "CREATE_ADMIN_KEY" with any value that will be useful in the registration panel when creating an administrator account. You can also rigidly assign some invented key in the application.properties file to the "create.admin.key" field
 ### Optional (Failure to complete them will result in the loss of some functionalities and the appearance of messages in the console on the back-end of the application)
