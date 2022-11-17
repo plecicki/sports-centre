@@ -19,13 +19,11 @@ public class OrderService {
     private final OrderMapper orderMapper;
 
     public List<Order> getAllOrders() {
-        List<Order> orderList = orderRepository.findAll();
-        return orderList;
+        return orderRepository.findAll();
     }
 
     public Order getOrderById(final Long orderId) throws OrderNotFoundException {
-        Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
-        return order;
+        return orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
     }
 
     public Order createOrder(final OrderCreateDto orderCreateDto) {

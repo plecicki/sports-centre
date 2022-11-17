@@ -1,6 +1,5 @@
 package com.kodilla.sportscentre.repositories;
 
-import com.kodilla.sportscentre.domain.Card;
 import com.kodilla.sportscentre.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

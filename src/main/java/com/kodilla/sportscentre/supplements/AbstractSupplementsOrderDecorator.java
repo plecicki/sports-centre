@@ -1,4 +1,4 @@
-package com.kodilla.sportscentre.suplements;
+package com.kodilla.sportscentre.supplements;
 
 import lombok.RequiredArgsConstructor;
 
@@ -6,15 +6,15 @@ import java.math.BigDecimal;
 
 @RequiredArgsConstructor
 public abstract class AbstractSupplementsOrderDecorator implements SupplementsOrder {
-    private final SupplementsOrder suplementsOrder;
+    private final SupplementsOrder supplementsOrder;
 
     @Override
     public String getDescription() {
-        return suplementsOrder.getDescription();
+        return supplementsOrder.getDescription();
     }
 
     @Override
     public BigDecimal getCost() {
-        return suplementsOrder.getCost();
+        return supplementsOrder.getCost();
     }
 }

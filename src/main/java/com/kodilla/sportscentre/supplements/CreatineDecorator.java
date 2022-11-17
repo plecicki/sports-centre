@@ -1,11 +1,11 @@
-package com.kodilla.sportscentre.suplements;
+package com.kodilla.sportscentre.supplements;
 
 import java.math.BigDecimal;
 
 public class CreatineDecorator extends AbstractSupplementsOrderDecorator {
 
-    public CreatineDecorator(SupplementsOrder suplementsOrder) {
-        super(suplementsOrder);
+    public CreatineDecorator(SupplementsOrder supplementsOrder) {
+        super(supplementsOrder);
     }
 
     @Override

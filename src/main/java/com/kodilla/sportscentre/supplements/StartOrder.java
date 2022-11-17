@@ -1,4 +1,4 @@
-package com.kodilla.sportscentre.suplements;
+package com.kodilla.sportscentre.supplements;
 
 import java.math.BigDecimal;
 

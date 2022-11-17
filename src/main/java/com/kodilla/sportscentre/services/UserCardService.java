@@ -4,7 +4,6 @@ import com.kodilla.sportscentre.domain.*;
 import com.kodilla.sportscentre.exceptions.CardNotFoundByUserId;
 import com.kodilla.sportscentre.exceptions.CardNotFoundException;
 import com.kodilla.sportscentre.exceptions.UserNotFoundException;
-import com.kodilla.sportscentre.mappers.CardMapper;
 import com.kodilla.sportscentre.mappers.UserMapper;
 import com.kodilla.sportscentre.repositories.CardRepository;
 import com.kodilla.sportscentre.repositories.UserRepository;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 public class UserCardService {
 
     private final CardRepository cardRepository;
-    private final CardMapper cardMapper;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
@@ -34,8 +32,7 @@ public class UserCardService {
 
         User oldUser = userMapper.mapFromUTCloneToUser(clonedOldUser);
         User newUser = userRepository.save(userMapper.mapToUserFromEdit(userEditDto));
-        UserOldNewDto userOldNewDto = new UserOldNewDto(oldUser, newUser);
-        return userOldNewDto;
+        return new UserOldNewDto(oldUser, newUser);
     }
 
     public void deleteUser(final Long userId) throws UserNotFoundException {
@@ -82,8 +79,7 @@ public class UserCardService {
     }
 
     public Card getCardByUserId(final Long userId) throws CardNotFoundByUserId {
-        Card card = cardRepository.findByUser_UserId(userId).orElseThrow(CardNotFoundByUserId::new);
-        return card;
+        return cardRepository.findByUser_UserId(userId).orElseThrow(CardNotFoundByUserId::new);
     }
 
     public void deleteCard(final Long cardId) throws CardNotFoundException {

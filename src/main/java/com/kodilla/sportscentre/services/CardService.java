@@ -1,8 +1,9 @@
 package com.kodilla.sportscentre.services;
 
-import com.kodilla.sportscentre.domain.*;
+import com.kodilla.sportscentre.domain.Card;
+import com.kodilla.sportscentre.domain.CardCreateDto;
+import com.kodilla.sportscentre.domain.CardEditDto;
 import com.kodilla.sportscentre.exceptions.CardNotFoundException;
-import com.kodilla.sportscentre.exceptions.UserNotFoundException;
 import com.kodilla.sportscentre.mappers.CardMapper;
 import com.kodilla.sportscentre.repositories.CardRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,11 @@ public class CardService {
     private final CardMapper cardMapper;
 
     public List<Card> getAllCards() {
-        List<Card> cardList = cardRepository.findAll();
-        return cardList;
+        return cardRepository.findAll();
     }
 
     public Card getCardById(final Long cardId) throws CardNotFoundException {
-        Card card = cardRepository.findById(cardId).orElseThrow(CardNotFoundException::new);
-        return card;
+        return cardRepository.findById(cardId).orElseThrow(CardNotFoundException::new);
     }
 
     public Card createCard(final CardCreateDto cardCreateDto) {

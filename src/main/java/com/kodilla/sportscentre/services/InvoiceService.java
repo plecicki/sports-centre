@@ -19,13 +19,11 @@ public class InvoiceService {
     private final InvoiceMapper invoiceMapper;
 
     public List<Invoice> getAllInvoices() {
-        List<Invoice> invoiceList = invoiceRepository.findAll();
-        return invoiceList;
+        return invoiceRepository.findAll();
     }
 
     public Invoice getInvoiceById(final Long invoiceId) throws InvoiceNotFoundException {
-        Invoice invoice = invoiceRepository.findById(invoiceId).orElseThrow(InvoiceNotFoundException::new);
-        return invoice;
+        return invoiceRepository.findById(invoiceId).orElseThrow(InvoiceNotFoundException::new);
     }
 
     public Invoice createInvoice(final InvoiceCreateDto invoiceCreateDto) {

@@ -16,8 +16,7 @@ public class YouTubeClient {
 
     public YouTubeDto getYouTubeVideoInfo(int videoIndex) {
         URI url = getYouTubeInfoUrlAddress(youTubeConfig.getVideos().get(videoIndex));
-        YouTubeDto youTubeDto = restTemplate.getForObject(url, YouTubeDto.class);
-        return youTubeDto;
+        return restTemplate.getForObject(url, YouTubeDto.class);
     }
 
     private URI getYouTubeInfoUrlAddress(String videoId) {

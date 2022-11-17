@@ -28,7 +28,6 @@ public class InvoiceFrontService {
     }
 
     public List<Invoice> getInvoicesByUserId(Long userId) {
-        List<Invoice> invoices = invoiceRepository.findAllByUser_UserId(userId);
-        return invoices;
+        return invoiceRepository.findAllByUser_UserId(userId);
     }
 }

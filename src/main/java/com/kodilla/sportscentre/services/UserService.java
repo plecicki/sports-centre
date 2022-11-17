@@ -19,13 +19,11 @@ public class UserService {
     private final UserMapper userMapper;
 
     public List<User> getAllUsers() {
-        List<User> userList = userRepository.findAll();
-        return userList;
+        return userRepository.findAll();
     }
 
     public User getUserById(final Long userId) throws UserNotFoundException {
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        return user;
+        return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 
     public User createUser(final UserCreateDto userCreateDto) {

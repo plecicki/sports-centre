@@ -16,8 +16,7 @@ public class WeatherClient {
 
     public WeatherDto getWeather() {
         URI url = getWeatherUrlAddress();
-        WeatherDto weatherDto = restTemplate.getForObject(url, WeatherDto.class);
-        return weatherDto;
+        return restTemplate.getForObject(url, WeatherDto.class);
     }
 
     private URI getWeatherUrlAddress() {

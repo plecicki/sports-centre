@@ -53,12 +53,11 @@ public class AccountService {
         Account account = accountRepository.findByUsername(accountInDto.getUsername()).orElseThrow(WrongUsernameException::new);
 
         if (DigestUtils.sha512Hex(accountInDto.getPassword() + account.getPasswordSalt()).equals(account.getPasswordHash())) {
-            AccountOutDto accountOutDto = new AccountOutDto(
+            return new AccountOutDto(
                     account.getUsername(),
                     account.getRole(),
                     account.getUser()
             );
-            return accountOutDto;
         } else {
             throw new WrongPasswordException();
         }

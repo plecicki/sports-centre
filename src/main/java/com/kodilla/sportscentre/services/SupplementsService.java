@@ -5,7 +5,7 @@ import com.kodilla.sportscentre.domain.OrderCreateDto;
 import com.kodilla.sportscentre.domain.OrderDecInDto;
 import com.kodilla.sportscentre.mappers.OrderMapper;
 import com.kodilla.sportscentre.repositories.OrderRepository;
-import com.kodilla.sportscentre.suplements.*;
+import com.kodilla.sportscentre.supplements.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

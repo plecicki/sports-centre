@@ -1,11 +1,9 @@
 package com.kodilla.sportscentre.scheduler;
 
-import com.kodilla.sportscentre.domain.Invoice;
 import com.kodilla.sportscentre.domain.InvoiceCreateDto;
 import com.kodilla.sportscentre.domain.Mail;
 import com.kodilla.sportscentre.domain.User;
 import com.kodilla.sportscentre.domain.enums.PaymentStatus;
-import com.kodilla.sportscentre.repositories.InvoiceRepository;
 import com.kodilla.sportscentre.repositories.UserRepository;
 import com.kodilla.sportscentre.services.InvoiceService;
 import com.kodilla.sportscentre.services.SimpleEmailService;
