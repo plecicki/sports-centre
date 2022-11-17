@@ -11,14 +11,17 @@ https://github.com/plecicki/sports-centre-frontend
 Projekt zrobiono za pomocą: <br>
 - Java 17.0.4.1 2022-08-18 LTS
 - Gradle 7.5 (Zawarte w gradle-wrapper.properties)
+- Spring Boot 2.5.0
 
-Najpierw należy uruchomić back-end aplikacji zawarty w tym repozytorium, potem front-end zawarty w repozytorium, do którego prowadzi link powyżej.
+Najpierw należy uruchomić back-end aplikacji uruchamiając metodę 'main' w klasie SportsCentreApplication.java, która jest zawarta w tym repozytorium, potem front-end zawarty w repozytorium, do którego prowadzi link powyżej.
 Przed uruchomieniem należy podjąć następujące kroki:
 ### Obowiązkowo
-- Uruchomić bazę danych MySQL dołączoną do projektu w folderze "SportsCentreDB" lub utworzyć własną o nazwie "sports_centre" (Wystarczy utworzyć bazę bez tabel. Tabele zostaną utworzone przez Hibernate przy uruchomieniu).
+- Stworzyć bazę danych MySQL o nazwie "sports_centre" (Wystarczy utworzyć bazę bez tabel. Tabele zostaną utworzone przez Hibernate przy uruchomieniu).
 - Stworzyć użytkownika w bazie danych o danych logowania zawartych w pliku application.properties. Login: sports_user, Hasło: sports_user oraz nadać mu uprawnienia do operacji w bazie.
 - Stworzyć zmienną środowiskową o nazwie "CREATE_ADMIN_KEY" o dowolnej wartości, która przyda się w panelu rejestracyjnym we front-end'zie przy tworzeniu konta administratora. Można również na sztywno przypisać jakiś wymyślony klucz w pliku application.properties do pola "create.admin.key"
+- Stworzyć zmienne środowiskowe "WEATHER_KEY", "YOUTUBE_KEY", "MAIL_USERNAME", "MAIL_PASSWORD" o dowolnych wartościach lub przypisać dowolne wartości do pól w application.properties "weather.key", "youtube.key", "spring.mail.username", "spring.mail.password", jeśli nie chcemy korzystać z zewnętrznych API oraz z funkcji wysyłania maili, a jeśli chcemy, to w zakładce "Opcjonalnie" jest napisane, co należy zrobić. (W razie wpisania losowych wartości będą pojawiały się komunikaty w konsoli back-end'u, ale program będzie działał. Wiecej o tym poniżej)
 ### Opcjonalnie (Niewypełnienie ich spowoduje utratę niektórych funkcjonalności oraz pojawianie się komunikatów w konsoli po stronie back-endu aplikacji)
+- Zaimportować bazę danych MySQL dołączoną do projektu w folderze "SportsCentreDB", co pozwoli na sprawdzenie działania aplikacji już z przykładowymi danymi. Nie pomiń żadnego pliku przy importowaniu.
 - W celu przetestowania funkcji wysyłania maili przez program należy uzupełnić dane konfiguracyjne w pliku application.properties. Przykładowe jest już zawarte w tym pliku, gdzie username oraz password są schowane w zmiennych środowiskowych. Nawet w przypadku, gdy nie mamy zamiaru wprowadzić danych konfiguracyjnych do własnego konta np. w serwisie "MailTrap" nie należy kasować przykładowych danych, ponieważ program się nie skompiluje, a tak to jedynie poinformuje w konsoli, że ma problem z autentykacją, ale reszta funkcji projektu będzie działała prawidłowo pomimo komunikatu w konsoli o problemie z autentykacją.
 - W celu wyświetlenia pogody na dzień jutrzejszy należy wpisać klucz dostępowy do pola "weather.key" w application.properties do serwisu VisualCrossing, który można wyrobić na stronie https://www.visualcrossing.com/ za darmo. W przypadku niespełnienia tego warunku zostanie wyświetlony label na stronie z komunikatem o błędzie.<br>
 ![image](https://user-images.githubusercontent.com/84147482/200683503-3d4868af-c4be-4a5e-a258-265b8f08b2ec.png)
@@ -111,13 +114,15 @@ The project was made with: <br>
 - Java 17.0.4.1 2022-08-18 LTS
 - Gradle 7.5 (Included in gradle-wrapper.properties)
 
-First, you need to run the back-end of the application contained in this repository, then the front-end contained in the repository linked above.
+First you need to start the back-end of the application by running the 'main' method in the SportsCentreApplication.java class, which is contained in this repository, then the front-end contained in the repository linked above.
 Before commissioning, the following steps must be taken:
 ### Obligatory
-- Run the database attached to the project in the "SportsCentreDB" folder or create your own named "sports_centre" (Just create a database without tables. The tables will be created by Hibernate at startup).
+- Create a MySQL database named "sports_centre" (Just create the database without the tables. The tables will be created by Hibernate on startup).
 - Create a user with the data contained in the application.properties file. Login: sports_user, Password: sports_user and give him permission to operate in the database.
 - Create an environment variable named "CREATE_ADMIN_KEY" with any value that will be useful in the registration panel in front-end when creating an administrator account. You can also rigidly assign some invented key in the application.properties file to the "create.admin.key" field
+- Create environment variables "WEATHER_KEY", "YOUTUBE_KEY", "MAIL_USERNAME", "MAIL_PASSWORD" with arbitrary values or assign any values to fields in application.properties "weather.key", "youtube.key", "spring.mail.username" , "spring.mail.password", if you do not want to use external APIs and the e-mail function, and if you want, in the "Optional" tab it is written what to do. (If you enter random values, messages will appear in the back-end console, but the program will work. More on that below)
 ### Optional (Failure to complete them will result in the loss of some functionalities and the appearance of messages in the console on the back-end of the application)
+- Import the MySQL database attached to the project in the "SportsCentreDB" folder, which will allow you to check the operation of the application with sample data. Do not skip any file.
 - In order to test the function of sending e-mails by the program, complete the configuration data in the application.properties file. An example is already included in this file, where username and password are hidden in the environment variables. Even if we do not intend to enter the configuration data into our own account, e.g. in the "MailTrap" service, do not delete the sample data, because the program will not compile, and this will only inform the console that it has a problem with authentication, but the rest of the functions project will work properly despite the message in the console about the problem with authentication.
 - In order to display the weather for tomorrow, enter the access key to the field "weather.key" in the application.properties to the VisualCrossing website, which can be obtained at https://www.visualcrossing.com/ for free. If this condition is not met, a label will be displayed on the page with the error message.<br>
 ![image](https://user-images.githubusercontent.com/84147482/200683503-3d4868af-c4be-4a5e-a258-265b8f08b2ec.png)
